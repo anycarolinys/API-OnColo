@@ -8,18 +8,23 @@ class PacienteSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('imc',)
 
+    def to_internal_value(self, data):
+        data._mutable = True
+        data['nome'] = " ".join(data['nome'].split())
+        
+        return super(PacienteSerializer, self).to_internal_value(data)
+
     def calculo_imc(self, data):
         return round(data['peso'] / (data['altura'] * data['altura']), 2)
     
     def create(self, validated_data):
         imc = self.calculo_imc(validated_data)
+        
         return Paciente.objects.create(imc=imc, **validated_data)
 
-
     def validate(self, data):
-
         matricula_valida(data['matricula'])
         nome_valido(data['nome'])
-        sobrenome_valido(data['sobrenome'])
-        
+        data_nascimento_valida(data['data_nascimento'])
+        cpf_valido(data['cpf'])
         return data

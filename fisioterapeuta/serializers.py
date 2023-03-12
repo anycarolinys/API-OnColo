@@ -7,10 +7,14 @@ class FisioterapeutaSerializer(serializers.ModelSerializer):
         model = Fisioterapeuta
         fields = '__all__'
 
-    def validate(self, data):
+    def to_internal_value(self, data):
+        data._mutable = True
+        data['nome'] = " ".join(data['nome'].split())
 
+        return super(FisioterapeutaSerializer, self).to_internal_value(data)
+    
+    def validate(self, data):
         matricula_valida(data['matricula'])
         nome_valido(data['nome'])
-        sobrenome_valido(data['sobrenome'])
-        
+
         return data

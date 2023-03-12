@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from .models import Consulta
+from .serializers import ConsultaSerializer
+from rest_framework import viewsets
 
-# Create your views here.
+
+class ConsultaViewSet(viewsets.ModelViewSet):
+    queryset = Consulta.objects.all()
+    serializer_class = ConsultaSerializer
