@@ -6,6 +6,12 @@ class InstituicaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Instituicao
         fields = '__all__'
+        
+    def to_internal_value(self, data):
+        data._mutable = True
+        data['nome'] = " ".join(data['nome'].split())
+
+        return super(InstituicaoSerializer, self).to_internal_value(data)
 
     def validate(self, data):
 
