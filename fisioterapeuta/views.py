@@ -15,7 +15,7 @@ class FisioterapeutasPorInstituicaoViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = FisioterapeutaSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['nome']
-    search_fields = ['nome', 'sobrenome', 'matricula']
+    search_fields = ['nome','matricula']
 
     def get_queryset(self):
         instituicao_id = self.kwargs['instituicao_id']
