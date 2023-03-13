@@ -9,4 +9,4 @@ class PacienteViewSet(viewsets.ModelViewSet):
     serializer_class = PacienteSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['nome']
-    search_fields = ['nome', 'sobrenome', 'matricula']
+    search_fields = ['nome', 'matricula', 'cpf']
