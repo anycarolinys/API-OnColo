@@ -8,12 +8,6 @@ class PacienteSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('imc',)
 
-    def to_internal_value(self, data):
-        data._mutable = True
-        data['nome'] = " ".join(data['nome'].split())
-        
-        return super(PacienteSerializer, self).to_internal_value(data)
-
     def calculo_imc(self, data):
         return round(data['peso'] / (data['altura'] * data['altura']), 2)
     
