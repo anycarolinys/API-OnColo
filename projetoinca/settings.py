@@ -26,13 +26,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paciente',
+    'consulta',
     'administracao',
     'instituicao',
     'fisioterapeuta',
-    'consulta',
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'formularios.formKHQ',
+    'formularios.formQVC',
+    'formularios.formQVCC',
+    'formularios.formFSFI',
+    'formularios.formFIQL',
+    'formularios.formAPR',
 ]
 
 MIDDLEWARE = [

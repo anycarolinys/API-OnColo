@@ -9,4 +9,4 @@ class Consulta(models.Model):
     fisioterapeuta = models.ForeignKey(Fisioterapeuta, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.paciente
+        return str(self.paciente)

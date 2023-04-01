@@ -11,4 +11,4 @@ class Paciente(models.Model):
     data_nascimento = models.DateField()    
 
     def __str__(self) -> str:
-        return self.nome
+        return str(self.nome)

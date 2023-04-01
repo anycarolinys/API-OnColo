@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\anycs\OneDrive\Documentos\MATERIAL_8_PERIODO\POC I\API-Deploy\2022-2-praticas-projetoinca - Copia\venv"
+VIRTUAL_ENV="C:\Users\anycs\OneDrive\Documentos\MATERIAL_8_PERIODO\POC I\Merge\API-OnColo\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
