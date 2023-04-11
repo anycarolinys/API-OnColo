@@ -72,6 +72,7 @@ class FormulariosPorPacienteView(APIView):
         # formafm = []
         # formagpg = []
         # formaics = []
+        data_consulta = {}
 
         for consulta in consultas:
             formapr = formapr + [formulario for formulario in consulta.formapr_set.all()]
@@ -83,6 +84,8 @@ class FormulariosPorPacienteView(APIView):
             # formafm = formafm + [formulario for formulario in consulta.formafm_set.all()]
             # formagpg = formagpg + [formulario for formulario in consulta.formagpg_set.all()]
             # formaics = formaics + [formulario for formulario in consulta.formaics_set.all()]
+            if consulta.id not in data_consulta:
+                data_consulta[consulta.id] = consulta.data_consulta
         
         serializer1 = FormAPRSerializer(formapr, many=True)
         serializer2 = FormFIQLSerializer(formfiql, many=True)
@@ -104,6 +107,7 @@ class FormulariosPorPacienteView(APIView):
             # 'FormAFM' : serializer7.data,
             # 'FormAGPG' : serializer8.data,
             # 'FormAICS' : serializer9.data,
+            'data_consulta': data_consulta
         }
 
         return Response(data)
