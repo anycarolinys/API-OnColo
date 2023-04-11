@@ -1,0 +1,7161 @@
+openapi: 3.0.3
+info:
+  title: DJANGO ON-COLO
+  version: 0.0.0
+paths:
+  /administrador/:
+    get:
+      operationId: administrador_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - administrador
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAdministradorList'
+          description: ''
+    post:
+      operationId: administrador_create
+      tags:
+      - administrador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Administrador'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Administrador'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Administrador'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+          description: ''
+  /administrador/{id}/:
+    get:
+      operationId: administrador_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this administrador.
+        required: true
+      tags:
+      - administrador
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+          description: ''
+    put:
+      operationId: administrador_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this administrador.
+        required: true
+      tags:
+      - administrador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Administrador'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Administrador'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Administrador'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+          description: ''
+    patch:
+      operationId: administrador_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this administrador.
+        required: true
+      tags:
+      - administrador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAdministrador'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAdministrador'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAdministrador'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+          description: ''
+    delete:
+      operationId: administrador_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this administrador.
+        required: true
+      tags:
+      - administrador
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /auth/token/:
+    post:
+      operationId: auth_token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /auth/token/refresh/:
+    post:
+      operationId: auth_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /consulta/:
+    get:
+      operationId: consulta_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - consulta
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedConsultaList'
+          description: ''
+    post:
+      operationId: consulta_create
+      tags:
+      - consulta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consulta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Consulta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Consulta'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consulta'
+          description: ''
+  /consulta/{id}/:
+    get:
+      operationId: consulta_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this consulta.
+        required: true
+      tags:
+      - consulta
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consulta'
+          description: ''
+    put:
+      operationId: consulta_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this consulta.
+        required: true
+      tags:
+      - consulta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consulta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Consulta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Consulta'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consulta'
+          description: ''
+    patch:
+      operationId: consulta_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this consulta.
+        required: true
+      tags:
+      - consulta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedConsulta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedConsulta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedConsulta'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consulta'
+          description: ''
+    delete:
+      operationId: consulta_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this consulta.
+        required: true
+      tags:
+      - consulta
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /fisioterapeuta/:
+    get:
+      operationId: fisioterapeuta_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - fisioterapeuta
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFisioterapeutaList'
+          description: ''
+    post:
+      operationId: fisioterapeuta_create
+      tags:
+      - fisioterapeuta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fisioterapeuta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Fisioterapeuta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Fisioterapeuta'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fisioterapeuta'
+          description: ''
+  /fisioterapeuta/{id}/:
+    get:
+      operationId: fisioterapeuta_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this fisioterapeuta.
+        required: true
+      tags:
+      - fisioterapeuta
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fisioterapeuta'
+          description: ''
+    put:
+      operationId: fisioterapeuta_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this fisioterapeuta.
+        required: true
+      tags:
+      - fisioterapeuta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fisioterapeuta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Fisioterapeuta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Fisioterapeuta'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fisioterapeuta'
+          description: ''
+    patch:
+      operationId: fisioterapeuta_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this fisioterapeuta.
+        required: true
+      tags:
+      - fisioterapeuta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFisioterapeuta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFisioterapeuta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFisioterapeuta'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fisioterapeuta'
+          description: ''
+    delete:
+      operationId: fisioterapeuta_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this fisioterapeuta.
+        required: true
+      tags:
+      - fisioterapeuta
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/AFM/:
+    get:
+      operationId: formulario_AFM_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormAFMList'
+          description: ''
+    post:
+      operationId: formulario_AFM_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAFM'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAFM'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAFM'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAFM'
+          description: ''
+  /formulario/AFM/{id}/:
+    get:
+      operationId: formulario_AFM_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form afm.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAFM'
+          description: ''
+    put:
+      operationId: formulario_AFM_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form afm.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAFM'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAFM'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAFM'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAFM'
+          description: ''
+    patch:
+      operationId: formulario_AFM_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form afm.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAFM'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAFM'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAFM'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAFM'
+          description: ''
+    delete:
+      operationId: formulario_AFM_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form afm.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/AGPG/:
+    get:
+      operationId: formulario_AGPG_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormAGPGList'
+          description: ''
+    post:
+      operationId: formulario_AGPG_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAGPG'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAGPG'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAGPG'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAGPG'
+          description: ''
+  /formulario/AGPG/{id}/:
+    get:
+      operationId: formulario_AGPG_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form agpg.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAGPG'
+          description: ''
+    put:
+      operationId: formulario_AGPG_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form agpg.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAGPG'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAGPG'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAGPG'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAGPG'
+          description: ''
+    patch:
+      operationId: formulario_AGPG_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form agpg.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAGPG'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAGPG'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAGPG'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAGPG'
+          description: ''
+    delete:
+      operationId: formulario_AGPG_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form agpg.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/AICS/:
+    get:
+      operationId: formulario_AICS_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormAICSList'
+          description: ''
+    post:
+      operationId: formulario_AICS_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAICS'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAICS'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAICS'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAICS'
+          description: ''
+  /formulario/AICS/{id}/:
+    get:
+      operationId: formulario_AICS_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form aics.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAICS'
+          description: ''
+    put:
+      operationId: formulario_AICS_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form aics.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAICS'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAICS'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAICS'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAICS'
+          description: ''
+    patch:
+      operationId: formulario_AICS_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form aics.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAICS'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAICS'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAICS'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAICS'
+          description: ''
+    delete:
+      operationId: formulario_AICS_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form aics.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/APR/:
+    get:
+      operationId: formulario_APR_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormAPRList'
+          description: ''
+    post:
+      operationId: formulario_APR_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAPR'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAPR'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAPR'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAPR'
+          description: ''
+  /formulario/APR/{id}/:
+    get:
+      operationId: formulario_APR_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form apr.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAPR'
+          description: ''
+    put:
+      operationId: formulario_APR_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form apr.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormAPR'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormAPR'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormAPR'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAPR'
+          description: ''
+    patch:
+      operationId: formulario_APR_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form apr.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAPR'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAPR'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormAPR'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormAPR'
+          description: ''
+    delete:
+      operationId: formulario_APR_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form apr.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/FIQL/:
+    get:
+      operationId: formulario_FIQL_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormFIQLList'
+          description: ''
+    post:
+      operationId: formulario_FIQL_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFIQL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormFIQL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormFIQL'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFIQL'
+          description: ''
+  /formulario/FIQL/{id}/:
+    get:
+      operationId: formulario_FIQL_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fiql.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFIQL'
+          description: ''
+    put:
+      operationId: formulario_FIQL_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fiql.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFIQL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormFIQL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormFIQL'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFIQL'
+          description: ''
+    patch:
+      operationId: formulario_FIQL_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fiql.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormFIQL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormFIQL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormFIQL'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFIQL'
+          description: ''
+    delete:
+      operationId: formulario_FIQL_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fiql.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/FSFI/:
+    get:
+      operationId: formulario_FSFI_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormFSFIList'
+          description: ''
+    post:
+      operationId: formulario_FSFI_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFSFI'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormFSFI'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormFSFI'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFSFI'
+          description: ''
+  /formulario/FSFI/{id}/:
+    get:
+      operationId: formulario_FSFI_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fsfi.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFSFI'
+          description: ''
+    put:
+      operationId: formulario_FSFI_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fsfi.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFSFI'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormFSFI'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormFSFI'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFSFI'
+          description: ''
+    patch:
+      operationId: formulario_FSFI_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fsfi.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormFSFI'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormFSFI'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormFSFI'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFSFI'
+          description: ''
+    delete:
+      operationId: formulario_FSFI_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form fsfi.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/KHQ/:
+    get:
+      operationId: formulario_KHQ_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormKHQList'
+          description: ''
+    post:
+      operationId: formulario_KHQ_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormKHQ'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormKHQ'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormKHQ'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormKHQ'
+          description: ''
+  /formulario/KHQ/{id}/:
+    get:
+      operationId: formulario_KHQ_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form khq.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormKHQ'
+          description: ''
+    put:
+      operationId: formulario_KHQ_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form khq.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormKHQ'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormKHQ'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormKHQ'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormKHQ'
+          description: ''
+    patch:
+      operationId: formulario_KHQ_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form khq.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormKHQ'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormKHQ'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormKHQ'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormKHQ'
+          description: ''
+    delete:
+      operationId: formulario_KHQ_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form khq.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/QVC/:
+    get:
+      operationId: formulario_QVC_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormQVCList'
+          description: ''
+    post:
+      operationId: formulario_QVC_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormQVC'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormQVC'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormQVC'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVC'
+          description: ''
+  /formulario/QVC/{id}/:
+    get:
+      operationId: formulario_QVC_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvc.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVC'
+          description: ''
+    put:
+      operationId: formulario_QVC_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvc.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormQVC'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormQVC'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormQVC'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVC'
+          description: ''
+    patch:
+      operationId: formulario_QVC_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvc.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormQVC'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormQVC'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormQVC'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVC'
+          description: ''
+    delete:
+      operationId: formulario_QVC_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvc.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formulario/QVCC/:
+    get:
+      operationId: formulario_QVCC_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFormQVCCList'
+          description: ''
+    post:
+      operationId: formulario_QVCC_create
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormQVCC'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormQVCC'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormQVCC'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVCC'
+          description: ''
+  /formulario/QVCC/{id}/:
+    get:
+      operationId: formulario_QVCC_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvcc.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVCC'
+          description: ''
+    put:
+      operationId: formulario_QVCC_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvcc.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormQVCC'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FormQVCC'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FormQVCC'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVCC'
+          description: ''
+    patch:
+      operationId: formulario_QVCC_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvcc.
+        required: true
+      tags:
+      - formulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFormQVCC'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFormQVCC'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFormQVCC'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormQVCC'
+          description: ''
+    delete:
+      operationId: formulario_QVCC_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this form qvcc.
+        required: true
+      tags:
+      - formulario
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /formularios/:
+    get:
+      operationId: formularios_retrieve
+      tags:
+      - formularios
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /instituicao/:
+    get:
+      operationId: instituicao_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - instituicao
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedInstituicaoList'
+          description: ''
+    post:
+      operationId: instituicao_create
+      tags:
+      - instituicao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Instituicao'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Instituicao'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Instituicao'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instituicao'
+          description: ''
+  /instituicao/{instituicao_id}/fisioterapeuta/:
+    get:
+      operationId: instituicao_fisioterapeuta_list
+      parameters:
+      - in: path
+        name: instituicao_id
+        schema:
+          type: string
+        required: true
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - instituicao
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFisioterapeutaList'
+          description: ''
+  /instituicao/{instituicao_id}/fisioterapeuta/{id}/:
+    get:
+      operationId: instituicao_fisioterapeuta_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: instituicao_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - instituicao
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fisioterapeuta'
+          description: ''
+  /instituicao/{id}/:
+    get:
+      operationId: instituicao_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this instituicao.
+        required: true
+      tags:
+      - instituicao
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instituicao'
+          description: ''
+    put:
+      operationId: instituicao_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this instituicao.
+        required: true
+      tags:
+      - instituicao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Instituicao'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Instituicao'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Instituicao'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instituicao'
+          description: ''
+    patch:
+      operationId: instituicao_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this instituicao.
+        required: true
+      tags:
+      - instituicao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInstituicao'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInstituicao'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInstituicao'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instituicao'
+          description: ''
+    delete:
+      operationId: instituicao_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this instituicao.
+        required: true
+      tags:
+      - instituicao
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /paciente/:
+    get:
+      operationId: paciente_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - openapi
+          - swagger
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - paciente
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/PaginatedPacienteList'
+            application/openapi+json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPacienteList'
+          description: ''
+    post:
+      operationId: paciente_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - openapi
+          - swagger
+      tags:
+      - paciente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+            application/openapi+json:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+          description: ''
+  /paciente/{paciente_id}/formularios/:
+    get:
+      operationId: paciente_formularios_retrieve
+      parameters:
+      - in: path
+        name: paciente_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - paciente
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /paciente/{id}/:
+    get:
+      operationId: paciente_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - openapi
+          - swagger
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this paciente.
+        required: true
+      tags:
+      - paciente
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+            application/openapi+json:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+          description: ''
+    put:
+      operationId: paciente_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - openapi
+          - swagger
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this paciente.
+        required: true
+      tags:
+      - paciente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+            application/openapi+json:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+          description: ''
+    patch:
+      operationId: paciente_partial_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - openapi
+          - swagger
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this paciente.
+        required: true
+      tags:
+      - paciente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPaciente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPaciente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPaciente'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+            application/openapi+json:
+              schema:
+                $ref: '#/components/schemas/Paciente'
+          description: ''
+    delete:
+      operationId: paciente_destroy
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - openapi
+          - swagger
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this paciente.
+        required: true
+      tags:
+      - paciente
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Administrador:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        login:
+          type: string
+          maxLength: 45
+        senha:
+          type: string
+          maxLength: 128
+        instituicao:
+          type: integer
+      required:
+      - id
+      - instituicao
+      - login
+      - senha
+    Afm01Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm02Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm03Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm04Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm05Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm09Enum:
+      enum:
+      - Muita
+      - Moderada
+      - Pouca
+      type: string
+      description: |-
+        * `Muita` - Muita
+        * `Moderada` - Moderada
+        * `Pouca` - Pouca
+    Afm10Enum:
+      enum:
+      - Gota
+      - Colher
+      - Jato
+      type: string
+      description: |-
+        * `Gota` - Gota
+        * `Colher` - Colher
+        * `Jato` - Jato
+    Afm11Enum:
+      enum:
+      - Urgência
+      - Esforço
+      - Mista
+      - Transbordamento
+      type: string
+      description: |-
+        * `Urgência` - Urgência
+        * `Esforço` - Esforço
+        * `Mista` - Mista
+        * `Transbordamento` - Transbordamento
+    Afm14Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm15Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm18Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm20Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm22Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm24Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm25Enum:
+      enum:
+      - Unidigital
+      - Bidigital
+      type: string
+      description: |-
+        * `Unidigital` - Unidigital
+        * `Bidigital` - Bidigital
+    Afm26Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm27Enum:
+      enum:
+      - Ausente
+      - Suave
+      - Severo
+      type: string
+      description: |-
+        * `Ausente` - Ausente
+        * `Suave` - Suave
+        * `Severo` - Severo
+    Afm28Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm32Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm34Enum:
+      enum:
+      - Diminuído
+      - Normal
+      - Aumentado
+      type: string
+      description: |-
+        * `Diminuído` - Diminuído
+        * `Normal` - Normal
+        * `Aumentado` - Aumentado
+    Afm35Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm36Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm38Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm40Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Afm41Enum:
+      enum:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      type: string
+      description: |-
+        * `0` - Ausência de resposta muscular
+        * `1` - Esboço de contração não sustentada
+        * `2` - Presença de contração de pequena intensidade, mas que se sustenta
+        * `3` - Contração moderada, sentida com o aumento da pressão intavaginal, que comprime os dedos do examinador com pequena elevação cranial da parede vaginal
+        * `4` - Contração satisfatória, que aperta os dedos do examinador, com elevação da parede vaginal em direção à sínfise púbica
+        * `5` - Contração forte, compressão firme dos dedos do examinador com movimento positivo em relação à sínfise púbica
+    Afm42Enum:
+      enum:
+      - P
+      - E
+      - R
+      - F
+      type: string
+      description: |-
+        * `P` - Power
+        * `E` - Endurance
+        * `R` - Repetition
+        * `F` - Fast
+    Agpg03Enum:
+      enum:
+      - Soberest
+      - Obesidade grau I
+      - Obesidade grau II
+      - Obesidade grau III
+      type: string
+      description: |-
+        * `Soberest` - Soberest
+        * `Obesidade grau I` - Obesidade grau I
+        * `Obesidade grau II` - Obesidade grau II
+        * `Obesidade grau III` - Obesidade grau III
+    Agpg29Enum:
+      enum:
+      - Sem alterações
+      - Sintomático reversível com elevação do membro
+      - Com alteração objetiva cutânea
+      - Aguda
+      - Tardia (com fibrose)
+      - Elefantíase
+      type: string
+      description: |-
+        * `Sem alterações` - Sem alterações
+        * `Sintomático reversível com elevação do membro` - Sintomático reversível com elevação do membro
+        * `Com alteração objetiva cutânea` - Com alteração objetiva cutânea
+        * `Aguda` - Aguda
+        * `Tardia (com fibrose)` - Tardia (com fibrose)
+        * `Elefantíase` - Elefantíase
+    Agpg30Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg31Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg32Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg33Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg34Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg35Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg36Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg37Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg38Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg39Enum:
+      enum:
+      - Fechada
+      - Aberta
+      type: string
+      description: |-
+        * `Fechada` - Fechada
+        * `Aberta` - Aberta
+    Agpg40Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg41Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4 '
+      - '5 '
+      type: string
+      description: "* `1` - 1\n* `2` - 2\n* `3` - 3\n* `4 ` - 4 \n* `5 ` - 5 "
+    Agpg42Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4 '
+      - '5 '
+      type: string
+      description: "* `1` - 1\n* `2` - 2\n* `3` - 3\n* `4 ` - 4 \n* `5 ` - 5 "
+    Agpg43Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4 '
+      - '5 '
+      type: string
+      description: "* `1` - 1\n* `2` - 2\n* `3` - 3\n* `4 ` - 4 \n* `5 ` - 5 "
+    Agpg44Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4 '
+      - '5 '
+      type: string
+      description: "* `1` - 1\n* `2` - 2\n* `3` - 3\n* `4 ` - 4 \n* `5 ` - 5 "
+    Agpg45Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4 '
+      - '5 '
+      type: string
+      description: "* `1` - 1\n* `2` - 2\n* `3` - 3\n* `4 ` - 4 \n* `5 ` - 5 "
+    Agpg46Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4 '
+      - '5 '
+      type: string
+      description: "* `1` - 1\n* `2` - 2\n* `3` - 3\n* `4 ` - 4 \n* `5 ` - 5 "
+    Agpg47Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg48Enum:
+      enum:
+      - Tipo I
+      - Tipo II
+      - Tipo III
+      - Tipo IV
+      - Tipo V
+      type: string
+      description: |-
+        * `Tipo I` - Tipo I
+        * `Tipo II` - Tipo II
+        * `Tipo III` - Tipo III
+        * `Tipo IV` - Tipo IV
+        * `Tipo V` - Tipo V
+    Agpg49Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Agpg50Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Aics05Enum:
+      enum:
+      - Soberest
+      - Obesidade grau I
+      - Obesidade grau II
+      - Obesidade grau III
+      type: string
+      description: |-
+        * `Soberest` - Soberest
+        * `Obesidade grau I` - Obesidade grau I
+        * `Obesidade grau II` - Obesidade grau II
+        * `Obesidade grau III` - Obesidade grau III
+    Aics10Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Aics12Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Aics14Enum:
+      enum:
+      - Preta
+      - Parda
+      - Branca
+      - Indígena
+      - Amarela
+      type: string
+      description: |-
+        * `Preta` - Preta
+        * `Parda` - Parda
+        * `Branca` - Branca
+        * `Indígena` - Indígena
+        * `Amarela` - Amarela
+    Aics15Enum:
+      enum:
+      - Casada/União estável
+      - Solteira
+      - Divorciada/Separada
+      - Viúva
+      type: string
+      description: |-
+        * `Casada/União estável` - Casada/União estável
+        * `Solteira` - Solteira
+        * `Divorciada/Separada` - Divorciada/Separada
+        * `Viúva` - Viúva
+    Aics16Enum:
+      enum:
+      - Do lar
+      - 'Em atividade '
+      - Aposentada
+      - Desempregada
+      type: string
+      description: |-
+        * `Do lar` - Do lar
+        * `Em atividade ` - Em atividade
+        * `Aposentada` - Aposentada
+        * `Desempregada` - Desempregada
+    Aics17Enum:
+      enum:
+      - Analfabeta
+      - Fundamental incompleto
+      - Fundamental completo
+      - Ensino médio incompleto
+      - Ensino médio completo
+      - Superior incompleto
+      - Superior completo
+      - Pós-graduação
+      type: string
+      description: |-
+        * `Analfabeta` - Analfabeta
+        * `Fundamental incompleto` - Fundamental incompleto
+        * `Fundamental completo` - Fundamental completo
+        * `Ensino médio incompleto` - Ensino médio incompleto
+        * `Ensino médio completo` - Ensino médio completo
+        * `Superior incompleto` - Superior incompleto
+        * `Superior completo` - Superior completo
+        * `Pós-graduação` - Pós-graduação
+    Aics18Enum:
+      enum:
+      - Menor que 1 salário
+      - Entre 1 e 3 salário(s)
+      - Maior que 3 salários
+      - Sem renda
+      - Sem informação
+      type: string
+      description: |-
+        * `Menor que 1 salário` - Menor que 1 salário
+        * `Entre 1 e 3 salário(s)` - Entre 1 e 3 salário(s)
+        * `Maior que 3 salários` - Maior que 3 salários
+        * `Sem renda` - Sem renda
+        * `Sem informação` - Sem informação
+    Aics19Enum:
+      enum:
+      - Não possui
+      - Aposentada
+      - Beneficiária
+      type: string
+      description: |-
+        * `Não possui` - Não possui
+        * `Aposentada` - Aposentada
+        * `Beneficiária` - Beneficiária
+    Aics20Enum:
+      enum:
+      - '0'
+      - I A
+      - I B
+      - II A
+      - II B
+      - III A
+      - III B
+      - I V
+      - Sem informação
+      type: string
+      description: |-
+        * `0` - 0
+        * `I A` - I A
+        * `I B` - I B
+        * `II A` - II A
+        * `II B` - II B
+        * `III A` - III A
+        * `III B` - III B
+        * `I V` - I V
+        * `Sem informação` - Sem informação
+    Aics21Enum:
+      enum:
+      - Carcinoma epidermóide
+      - Adenocarcinoma
+      - Outros
+      - Sem informação
+      type: string
+      description: |-
+        * `Carcinoma epidermóide` - Carcinoma epidermóide
+        * `Adenocarcinoma` - Adenocarcinoma
+        * `Outros` - Outros
+        * `Sem informação` - Sem informação
+    Aics22Enum:
+      enum:
+      - Grau X
+      - Grau 1
+      - Grau 2
+      - Grau 3
+      - Sem informação
+      type: string
+      description: |-
+        * `Grau X` - Grau X
+        * `Grau 1` - Grau 1
+        * `Grau 2` - Grau 2
+        * `Grau 3` - Grau 3
+        * `Sem informação` - Sem informação
+    Aics26Enum:
+      enum:
+      - HTA I
+      - HTA II
+      - HTA III
+      - HTV
+      - SOB
+      - SOU/SOD/SOE
+      - Traquelectomia radical
+      - Cirurgia de Schauta
+      type: string
+      description: |-
+        * `HTA I` - HTA I
+        * `HTA II` - HTA II
+        * `HTA III` - HTA III
+        * `HTV` - HTV
+        * `SOB` - SOB
+        * `SOU/SOD/SOE` - SOU/SOD/SOE
+        * `Traquelectomia radical` - Traquelectomia radical
+        * `Cirurgia de Schauta` - Cirurgia de Schauta
+    Aics27Enum:
+      enum:
+      - Sim
+      - Não
+      - Sem informação
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+        * `Sem informação` - Sem informação
+    Aics34Enum:
+      enum:
+      - Neoadjuvante
+      - Adjuvante
+      type: string
+      description: |-
+        * `Neoadjuvante` - Neoadjuvante
+        * `Adjuvante` - Adjuvante
+    Apr09Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr14Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr19Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr21Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+        * `6` - 6
+        * `7` - 7
+        * `8` - 8
+        * `9` - 9
+        * `10` - 10
+    Apr46Enum:
+      enum:
+      - Sem alterações
+      - Sintomático reversível com elevação do membro
+      - Com alteração objetiva cutânea
+      - Com alteração objetiva Aguda
+      - Com alteração objetiva Tardia(com fibrose)
+      - Elefantíase
+      type: string
+      description: |-
+        * `Sem alterações` - Sem alterações
+        * `Sintomático reversível com elevação do membro` - Sintomático reversível com elevação do membro
+        * `Com alteração objetiva cutânea` - Com alteração objetiva cutânea
+        * `Com alteração objetiva Aguda` - Com alteração objetiva Aguda
+        * `Com alteração objetiva Tardia(com fibrose)` - Com alteração objetiva Tardia(com fibrose)
+        * `Elefantíase` - Elefantíase
+    Apr47Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr48Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr49Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr50Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr51Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr52Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr53Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr54Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr55Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr56Enum:
+      enum:
+      - Fechada
+      - Aberta
+      type: string
+      description: |-
+        * `Fechada` - Fechada
+        * `Aberta` - Aberta
+    Apr57Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Apr58Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Apr59Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Apr60Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Apr61Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Apr62Enum:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `0` - 0
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Apr63Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr64Enum:
+      enum:
+      - Tipo I
+      - Tipo II
+      - Tipo III
+      - Tipo IV
+      - Tipo V
+      - Tipo VI
+      - Tipo VII
+      type: string
+      description: |-
+        * `Tipo I` - Tipo I
+        * `Tipo II` - Tipo II
+        * `Tipo III` - Tipo III
+        * `Tipo IV` - Tipo IV
+        * `Tipo V` - Tipo V
+        * `Tipo VI` - Tipo VI
+        * `Tipo VII` - Tipo VII
+    Apr65Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    Apr66Enum:
+      enum:
+      - Sim
+      - Não
+      type: string
+      description: |-
+        * `Sim` - Sim
+        * `Não` - Não
+    BlankEnum:
+      enum:
+      - ''
+    Consulta:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        data_consulta:
+          type: string
+          format: date
+          readOnly: true
+        data_retorno:
+          type: string
+          format: date
+          nullable: true
+        paciente:
+          type: integer
+        fisioterapeuta:
+          type: integer
+      required:
+      - data_consulta
+      - fisioterapeuta
+      - id
+      - paciente
+    Fiql01Enum:
+      enum:
+      - Muito boa
+      - Boa
+      - Regular
+      - Ruim
+      type: string
+      description: |-
+        * `Muito boa` - Muito boa
+        * `Boa` - Boa
+        * `Regular` - Regular
+        * `Ruim` - Ruim
+    Fiql28Enum:
+      enum:
+      - Muitas vezes
+      - Algumas vezes
+      - Poucas vezes
+      - Nenhuma vez
+      - Nenhuma das respostas
+      type: string
+      description: |-
+        * `Muitas vezes` - Muitas vezes
+        * `Algumas vezes` - Algumas vezes
+        * `Poucas vezes` - Poucas vezes
+        * `Nenhuma vez` - Nenhuma vez
+        * `Nenhuma das respostas` - Nenhuma das respostas
+    Fiql29Enum:
+      enum:
+      - Extremamente. A ponto de desistir
+      - Muitas vezes
+      - Com frequência
+      - Algumas vezes - o suficiente para me preocupar (incomodar)
+      - Poucas vezes
+      - Nenhuma vez
+      type: string
+      description: |-
+        * `Extremamente. A ponto de desistir` - Extremamente. A ponto de desistir
+        * `Muitas vezes` - Muitas vezes
+        * `Com frequência` - Com frequência
+        * `Algumas vezes - o suficiente para me preocupar (incomodar)` - Algumas vezes - o suficiente para me preocupar (incomodar)
+        * `Poucas vezes` - Poucas vezes
+        * `Nenhuma vez` - Nenhuma vez
+    Fisioterapeuta:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        matricula:
+          type: string
+          maxLength: 20
+        nome:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        senha:
+          type: string
+          maxLength: 128
+        instituicao:
+          type: integer
+          nullable: true
+      required:
+      - email
+      - id
+      - matricula
+      - nome
+      - senha
+    FormAFM:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        afm06:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        afm33:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        consulta:
+          allOf:
+          - $ref: '#/components/schemas/Consulta'
+          readOnly: true
+        afm01:
+          allOf:
+          - $ref: '#/components/schemas/Afm01Enum'
+          title: Bebe 2 litros de água?
+        afm02:
+          allOf:
+          - $ref: '#/components/schemas/Afm02Enum'
+          title: Sente vontade de urinar?
+        afm03:
+          allOf:
+          - $ref: '#/components/schemas/Afm03Enum'
+          title: Tem sensação de esvaziamento incompleto?
+        afm04:
+          allOf:
+          - $ref: '#/components/schemas/Afm04Enum'
+          title: Há gotejamento após esvaziament
+        afm05:
+          allOf:
+          - $ref: '#/components/schemas/Afm05Enum'
+          title: Você perde xixi?
+        afm07:
+          type: string
+          format: date
+          nullable: true
+          title: 'Data do último episódio:'
+        afm08:
+          type: integer
+          nullable: true
+          title: 'Perda diária:'
+        afm09:
+          nullable: true
+          title: 'Intensidade de perda:'
+          oneOf:
+          - $ref: '#/components/schemas/Afm09Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm10:
+          nullable: true
+          title: 'Quantidade da perda:'
+          oneOf:
+          - $ref: '#/components/schemas/Afm10Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm11:
+          nullable: true
+          title: 'Tipo da incontinência urinária:'
+          oneOf:
+          - $ref: '#/components/schemas/Afm11Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm12:
+          type: string
+          format: date
+          nullable: true
+          title: 'Início dos sintomas:'
+        afm13:
+          type: integer
+          title: 'Frequência urinária diária:'
+        afm14:
+          allOf:
+          - $ref: '#/components/schemas/Afm14Enum'
+          title: Dor para urinar?
+        afm15:
+          allOf:
+          - $ref: '#/components/schemas/Afm15Enum'
+          title: Infecção urinária?
+        afm16:
+          type: integer
+          nullable: true
+          title: Quantas vezes?
+        afm17:
+          type: string
+          format: date
+          nullable: true
+          title: Qual a data do último episódio?
+        afm18:
+          allOf:
+          - $ref: '#/components/schemas/Afm18Enum'
+          title: ' Uso de forro?'
+        afm19:
+          type: integer
+          nullable: true
+          title: Quantidade por dia?
+        afm20:
+          allOf:
+          - $ref: '#/components/schemas/Afm20Enum'
+          title: ' Enurese?'
+        afm21:
+          type: integer
+          nullable: true
+          title: Quantidade de vezes?
+        afm22:
+          allOf:
+          - $ref: '#/components/schemas/Afm22Enum'
+          title: Nocturia?
+        afm23:
+          type: integer
+          nullable: true
+          title: Quantidade de vezes?
+        afm24:
+          allOf:
+          - $ref: '#/components/schemas/Afm24Enum'
+          title: Sente protuberância ou algo caindo que pode ver ou sentir na área
+            vaginal?
+        afm25:
+          allOf:
+          - $ref: '#/components/schemas/Afm25Enum'
+          title: Toque vaginal
+        afm26:
+          allOf:
+          - $ref: '#/components/schemas/Afm26Enum'
+          title: Desconforto ao toque vaginal?
+        afm27:
+          allOf:
+          - $ref: '#/components/schemas/Afm27Enum'
+          title: Dor
+        afm28:
+          allOf:
+          - $ref: '#/components/schemas/Afm28Enum'
+          title: Sangramento Vaginal
+        afm29:
+          type: number
+          format: double
+          title: Comprimento
+        afm30:
+          type: integer
+          title: Segundos de contração do MAP sustentada
+        afm31:
+          type: integer
+          title: Contrações rápidas sem perder a força
+        afm32:
+          allOf:
+          - $ref: '#/components/schemas/Afm32Enum'
+          title: Usa musculatura acessória para contração?
+        afm34:
+          allOf:
+          - $ref: '#/components/schemas/Afm34Enum'
+          title: Atividade tônica dos músculos do assoalho pélvico
+        afm35:
+          allOf:
+          - $ref: '#/components/schemas/Afm35Enum'
+          title: Contração do levantador do ânus/ contração em direção à sínfise púbica
+        afm36:
+          allOf:
+          - $ref: '#/components/schemas/Afm36Enum'
+          title: Exercícios com dilatadores
+        afm37:
+          type: integer
+          nullable: true
+          title: Frequência dilatadores
+        afm38:
+          allOf:
+          - $ref: '#/components/schemas/Afm38Enum'
+          title: Relação sexual
+        afm39:
+          type: integer
+          nullable: true
+          title: Frequência relação sexual
+        afm40:
+          nullable: true
+          title: Desconforto na relação sexual?
+          oneOf:
+          - $ref: '#/components/schemas/Afm40Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm41:
+          allOf:
+          - $ref: '#/components/schemas/Afm41Enum'
+          title: Força da musculatura do assoalho pélvico
+        afm42:
+          allOf:
+          - $ref: '#/components/schemas/Afm42Enum'
+          title: Escala New Perfect
+      required:
+      - afm01
+      - afm02
+      - afm03
+      - afm04
+      - afm05
+      - afm06
+      - afm13
+      - afm14
+      - afm15
+      - afm18
+      - afm20
+      - afm22
+      - afm24
+      - afm25
+      - afm26
+      - afm27
+      - afm28
+      - afm29
+      - afm30
+      - afm31
+      - afm32
+      - afm33
+      - afm34
+      - afm35
+      - afm36
+      - afm38
+      - afm41
+      - afm42
+      - consulta
+      - id
+    FormAGPG:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        agpg01:
+          type: number
+          format: double
+          title: Peso
+        agpg02:
+          type: number
+          format: double
+          title: Altura
+        agpg03:
+          allOf:
+          - $ref: '#/components/schemas/Agpg03Enum'
+          title: IMC
+        agpg04:
+          type: number
+          format: double
+          title: Circunferência abdominal
+        agpg05:
+          type: number
+          format: double
+          title: MID 21
+        agpg06:
+          type: number
+          format: double
+          title: MID 14
+        agpg07:
+          type: number
+          format: double
+          title: MID 07
+        agpg08:
+          type: number
+          format: double
+          title: MID BSP
+        agpg09:
+          type: number
+          format: double
+          title: MID 28
+        agpg10:
+          type: number
+          format: double
+          title: MID 35
+        agpg11:
+          type: number
+          format: double
+          title: MID TT
+        agpg12:
+          type: number
+          format: double
+          title: MID Pé
+        agpg13:
+          type: number
+          format: double
+          title: MIE 21
+        agpg14:
+          type: number
+          format: double
+          title: MIE 14
+        agpg15:
+          type: number
+          format: double
+          title: MIE 07
+        agpg16:
+          type: number
+          format: double
+          title: MIE BSP
+        agpg17:
+          type: number
+          format: double
+          title: MIE 28
+        agpg18:
+          type: number
+          format: double
+          title: MIE 35
+        agpg19:
+          type: number
+          format: double
+          title: MIE TT
+        agpg20:
+          type: number
+          format: double
+          title: MIE Pé
+        agpg21:
+          type: number
+          format: double
+          title: '# 21'
+        agpg22:
+          type: number
+          format: double
+          title: '# 14'
+        agpg23:
+          type: number
+          format: double
+          title: '# 07'
+        agpg24:
+          type: number
+          format: double
+          title: '# BSP'
+        agpg25:
+          type: number
+          format: double
+          title: '# 28'
+        agpg26:
+          type: number
+          format: double
+          title: '# 35'
+        agpg27:
+          type: number
+          format: double
+          title: '# TT'
+        agpg28:
+          type: number
+          format: double
+          title: '# Pé'
+        agpg29:
+          allOf:
+          - $ref: '#/components/schemas/Agpg29Enum'
+          title: Resultado
+        agpg30:
+          allOf:
+          - $ref: '#/components/schemas/Agpg30Enum'
+          title: Sensação de peso
+        agpg31:
+          allOf:
+          - $ref: '#/components/schemas/Agpg31Enum'
+          title: 'Pele esticada '
+        agpg32:
+          allOf:
+          - $ref: '#/components/schemas/Agpg32Enum'
+          title: Formigamento
+        agpg33:
+          allOf:
+          - $ref: '#/components/schemas/Agpg33Enum'
+          title: Sensação de perna dura/movimentos reduzidos
+        agpg34:
+          allOf:
+          - $ref: '#/components/schemas/Agpg34Enum'
+          title: Alguma dificuldade para realizar atividade física
+        agpg35:
+          allOf:
+          - $ref: '#/components/schemas/Agpg35Enum'
+          title: Mudança de coloração
+        agpg36:
+          allOf:
+          - $ref: '#/components/schemas/Agpg36Enum'
+          title: Telangiectasias
+        agpg37:
+          allOf:
+          - $ref: '#/components/schemas/Agpg37Enum'
+          title: Veias varicosas
+        agpg38:
+          allOf:
+          - $ref: '#/components/schemas/Agpg38Enum'
+          title: Úlcera venosa
+        agpg39:
+          nullable: true
+          title: Tipo úlcera venosa
+          oneOf:
+          - $ref: '#/components/schemas/Agpg39Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        agpg40:
+          allOf:
+          - $ref: '#/components/schemas/Agpg40Enum'
+          title: Lesão nervosa periférica
+        agpg41:
+          allOf:
+          - $ref: '#/components/schemas/Agpg41Enum'
+          title: Flexão do quadril direito
+        agpg42:
+          allOf:
+          - $ref: '#/components/schemas/Agpg42Enum'
+          title: Flexão do quadril esquerdo
+        agpg43:
+          allOf:
+          - $ref: '#/components/schemas/Agpg43Enum'
+          title: Extensão do joelho direito
+        agpg44:
+          allOf:
+          - $ref: '#/components/schemas/Agpg44Enum'
+          title: Extensão do joelho esquerdo
+        agpg45:
+          allOf:
+          - $ref: '#/components/schemas/Agpg45Enum'
+          title: Dorsiflexão do tornozelo direito
+        agpg46:
+          allOf:
+          - $ref: '#/components/schemas/Agpg46Enum'
+          title: Dorsiflexão do tornozelo esquerdo
+        agpg47:
+          allOf:
+          - $ref: '#/components/schemas/Agpg47Enum'
+          title: Alterações da função intestinal
+        agpg48:
+          allOf:
+          - $ref: '#/components/schemas/Agpg48Enum'
+          title: Escala de Bristol
+        agpg49:
+          allOf:
+          - $ref: '#/components/schemas/Agpg49Enum'
+          title: Incontinência
+        agpg50:
+          allOf:
+          - $ref: '#/components/schemas/Agpg50Enum'
+          title: Alterações da função vesical
+        consulta:
+          type: integer
+      required:
+      - agpg01
+      - agpg02
+      - agpg03
+      - agpg04
+      - agpg05
+      - agpg06
+      - agpg07
+      - agpg08
+      - agpg09
+      - agpg10
+      - agpg11
+      - agpg12
+      - agpg13
+      - agpg14
+      - agpg15
+      - agpg16
+      - agpg17
+      - agpg18
+      - agpg19
+      - agpg20
+      - agpg21
+      - agpg22
+      - agpg23
+      - agpg24
+      - agpg25
+      - agpg26
+      - agpg27
+      - agpg28
+      - agpg29
+      - agpg30
+      - agpg31
+      - agpg32
+      - agpg33
+      - agpg34
+      - agpg35
+      - agpg36
+      - agpg37
+      - agpg38
+      - agpg40
+      - agpg41
+      - agpg42
+      - agpg43
+      - agpg44
+      - agpg45
+      - agpg46
+      - agpg47
+      - agpg48
+      - agpg49
+      - agpg50
+      - consulta
+      - id
+    FormAICS:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        aics11:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        aics23:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        aics35:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        consulta:
+          allOf:
+          - $ref: '#/components/schemas/Consulta'
+          readOnly: true
+        aics01:
+          type: string
+          format: date
+          title: Data de nascimento
+        aics03:
+          type: number
+          format: double
+          title: Peso
+        aics04:
+          type: number
+          format: double
+          title: Altura
+        aics05:
+          allOf:
+          - $ref: '#/components/schemas/Aics05Enum'
+          title: IMC
+        aics06:
+          type: number
+          format: double
+          title: Circunferência abdominal
+        aics07:
+          type: integer
+          title: Paridade (gestações)
+        aics08:
+          type: integer
+          title: Paridade (partos)
+        aics09:
+          type: integer
+          title: Paridade (abortos)
+        aics10:
+          allOf:
+          - $ref: '#/components/schemas/Aics10Enum'
+          title: Menopausa por tratamento oncológico
+        aics12:
+          allOf:
+          - $ref: '#/components/schemas/Aics12Enum'
+          title: Tabagista
+        aics13:
+          type: string
+          format: date
+          nullable: true
+          title: Ex-tabagista (há quanto tempo)
+        aics14:
+          allOf:
+          - $ref: '#/components/schemas/Aics14Enum'
+          title: Cor da pele
+        aics15:
+          allOf:
+          - $ref: '#/components/schemas/Aics15Enum'
+          title: Estado civil
+        aics16:
+          allOf:
+          - $ref: '#/components/schemas/Aics16Enum'
+          title: Profissão
+        aics17:
+          allOf:
+          - $ref: '#/components/schemas/Aics17Enum'
+          title: Escolaridade
+        aics18:
+          allOf:
+          - $ref: '#/components/schemas/Aics18Enum'
+          title: Renda familiar
+        aics19:
+          allOf:
+          - $ref: '#/components/schemas/Aics19Enum'
+          title: Vínculo previdenciário
+        aics20:
+          allOf:
+          - $ref: '#/components/schemas/Aics20Enum'
+          title: Estadiamento Clínico FIGO
+        aics21:
+          allOf:
+          - $ref: '#/components/schemas/Aics21Enum'
+          title: Estadiamento histopatológico
+        aics22:
+          allOf:
+          - $ref: '#/components/schemas/Aics22Enum'
+          title: Tipo/grau histológico
+        aics24:
+          type: string
+          nullable: true
+          title: Procedimento cirúrgico
+          maxLength: 20
+        aics25:
+          type: string
+          format: date
+          nullable: true
+          title: 'Data de realização da primeira cirurgia:'
+        aics26:
+          nullable: true
+          title: Técnica cirúrgica
+          oneOf:
+          - $ref: '#/components/schemas/Aics26Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        aics27:
+          nullable: true
+          title: Complicação pós-cirúrgica até 30 dias após a cirurgia
+          oneOf:
+          - $ref: '#/components/schemas/Aics27Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        aics28:
+          type: integer
+          nullable: true
+          title: Número de sessões de radioterapia
+        aics29:
+          type: number
+          format: double
+          nullable: true
+          title: Dose na radioterapia (Gy)
+        aics30:
+          type: string
+          format: date
+          nullable: true
+          title: Tempo de tratamento com radioterapia
+        aics31:
+          type: integer
+          nullable: true
+          title: 'Número de sessões de braquiterapia:'
+        aics32:
+          type: number
+          format: double
+          nullable: true
+          title: Dose na braquiterapia (Gy)
+        aics33:
+          type: string
+          format: date
+          nullable: true
+          title: Tempo de tratamento com braquiterapia
+        aics34:
+          nullable: true
+          title: Tipo da quimioterapia
+          oneOf:
+          - $ref: '#/components/schemas/Aics34Enum'
+          - $ref: '#/components/schemas/NullEnum'
+      required:
+      - aics01
+      - aics03
+      - aics04
+      - aics05
+      - aics06
+      - aics07
+      - aics08
+      - aics09
+      - aics10
+      - aics11
+      - aics12
+      - aics14
+      - aics15
+      - aics16
+      - aics17
+      - aics18
+      - aics19
+      - aics20
+      - aics21
+      - aics22
+      - aics23
+      - aics35
+      - consulta
+      - id
+    FormAPR:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        apr01:
+          type: number
+          format: double
+          title: Peso
+        apr02:
+          type: number
+          format: double
+          title: Altura
+        apr03:
+          type: number
+          format: double
+          readOnly: true
+          title: IMC
+        apr04:
+          type: number
+          format: double
+          title: Circunferência abdominal
+        apr05:
+          type: string
+          format: date
+          title: Data da radioterapia
+        apr06:
+          type: string
+          format: date
+          title: Data final da radioterapia
+        apr07:
+          type: number
+          format: double
+          title: Radiação total
+        apr08:
+          type: integer
+          title: Número total de frações
+        apr09:
+          allOf:
+          - $ref: '#/components/schemas/Apr09Enum'
+          title: Quimioterapia
+        apr10:
+          type: string
+          format: date
+          nullable: true
+          title: Data da quimioterapia
+        apr11:
+          type: string
+          format: date
+          nullable: true
+          title: Data final da quimioterapia
+        apr12:
+          type: number
+          format: double
+          nullable: true
+          title: Ciclo total
+        apr13:
+          type: number
+          format: double
+          nullable: true
+          title: Dose Total
+        apr14:
+          allOf:
+          - $ref: '#/components/schemas/Apr14Enum'
+          title: Braquiterapia
+        apr15:
+          type: string
+          format: date
+          nullable: true
+          title: Data da braquiterapia
+        apr16:
+          type: string
+          format: date
+          nullable: true
+          title: Data final da braquiterapia
+        apr17:
+          type: number
+          format: double
+          nullable: true
+          title: Radiação total
+        apr18:
+          type: integer
+          nullable: true
+          title: Número total de frações
+        apr19:
+          allOf:
+          - $ref: '#/components/schemas/Apr19Enum'
+          title: Dor
+        apr20:
+          type: string
+          nullable: true
+          title: Local
+          maxLength: 45
+        apr21:
+          allOf:
+          - $ref: '#/components/schemas/Apr21Enum'
+          title: Escala Visual Analógica(EVA)
+        apr22:
+          type: number
+          format: double
+          title: MID 21
+        apr23:
+          type: number
+          format: double
+          title: MID 14
+        apr24:
+          type: number
+          format: double
+          title: MID 07
+        apr25:
+          type: number
+          format: double
+          title: MID BSP
+        apr26:
+          type: number
+          format: double
+          title: MID 28
+        apr27:
+          type: number
+          format: double
+          title: MID 35
+        apr28:
+          type: number
+          format: double
+          title: MID TT
+        apr29:
+          type: number
+          format: double
+          title: MID Pé
+        apr30:
+          type: number
+          format: double
+          title: MIE 21
+        apr31:
+          type: number
+          format: double
+          title: MIE 14
+        apr32:
+          type: number
+          format: double
+          title: MIE 07
+        apr33:
+          type: number
+          format: double
+          title: MIE BSP
+        apr34:
+          type: number
+          format: double
+          title: MIE 28
+        apr35:
+          type: number
+          format: double
+          title: MIE 35
+        apr36:
+          type: number
+          format: double
+          title: MIE TT
+        apr37:
+          type: number
+          format: double
+          title: MIE Pé
+        apr38:
+          type: number
+          format: double
+          title: '# 21'
+        apr39:
+          type: number
+          format: double
+          title: '# 14'
+        apr40:
+          type: number
+          format: double
+          title: '# 07'
+        apr41:
+          type: number
+          format: double
+          title: '# BSP'
+        apr42:
+          type: number
+          format: double
+          title: '# 28'
+        apr43:
+          type: number
+          format: double
+          title: '# 35'
+        apr44:
+          type: number
+          format: double
+          title: '# TT'
+        apr45:
+          type: number
+          format: double
+          title: '# Pé'
+        apr46:
+          allOf:
+          - $ref: '#/components/schemas/Apr46Enum'
+          title: Resultado
+        apr47:
+          allOf:
+          - $ref: '#/components/schemas/Apr47Enum'
+          title: Sensação de peso
+        apr48:
+          allOf:
+          - $ref: '#/components/schemas/Apr48Enum'
+          title: Pele esticada
+        apr49:
+          allOf:
+          - $ref: '#/components/schemas/Apr49Enum'
+          title: Formigamento
+        apr50:
+          allOf:
+          - $ref: '#/components/schemas/Apr50Enum'
+          title: Sensação de perna dura/movimentos reduzidos
+        apr51:
+          allOf:
+          - $ref: '#/components/schemas/Apr51Enum'
+          title: Alguma dificuldade para realizar atividade física
+        apr52:
+          allOf:
+          - $ref: '#/components/schemas/Apr52Enum'
+          title: Mudança de coloração
+        apr53:
+          allOf:
+          - $ref: '#/components/schemas/Apr53Enum'
+          title: Telangiectasias
+        apr54:
+          allOf:
+          - $ref: '#/components/schemas/Apr54Enum'
+          title: Veias varicosas
+        apr55:
+          allOf:
+          - $ref: '#/components/schemas/Apr55Enum'
+          title: Ulcera venosa
+        apr56:
+          nullable: true
+          title: Ulcera venosa
+          oneOf:
+          - $ref: '#/components/schemas/Apr56Enum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        apr57:
+          allOf:
+          - $ref: '#/components/schemas/Apr57Enum'
+          title: Flexão do quadril D
+        apr58:
+          allOf:
+          - $ref: '#/components/schemas/Apr58Enum'
+          title: Flexão do quadril E
+        apr59:
+          allOf:
+          - $ref: '#/components/schemas/Apr59Enum'
+          title: Extensão do joelho D
+        apr60:
+          allOf:
+          - $ref: '#/components/schemas/Apr60Enum'
+          title: Extensão do joelho E
+        apr61:
+          allOf:
+          - $ref: '#/components/schemas/Apr61Enum'
+          title: Dorsiflexão do tornozelo D
+        apr62:
+          allOf:
+          - $ref: '#/components/schemas/Apr62Enum'
+          title: Dorsiflexão do tornozelo E
+        apr63:
+          allOf:
+          - $ref: '#/components/schemas/Apr63Enum'
+          title: Alterações da função INTESTINAL
+        apr64:
+          allOf:
+          - $ref: '#/components/schemas/Apr64Enum'
+          title: Escala de Bristol
+        apr65:
+          allOf:
+          - $ref: '#/components/schemas/Apr65Enum'
+          title: Incontinência
+        apr66:
+          allOf:
+          - $ref: '#/components/schemas/Apr66Enum'
+          title: Alterações da função VESICAL
+        consulta:
+          type: integer
+      required:
+      - apr01
+      - apr02
+      - apr03
+      - apr04
+      - apr05
+      - apr06
+      - apr07
+      - apr08
+      - apr09
+      - apr14
+      - apr19
+      - apr21
+      - apr22
+      - apr23
+      - apr24
+      - apr25
+      - apr26
+      - apr27
+      - apr28
+      - apr29
+      - apr30
+      - apr31
+      - apr32
+      - apr33
+      - apr34
+      - apr35
+      - apr36
+      - apr37
+      - apr38
+      - apr39
+      - apr40
+      - apr41
+      - apr42
+      - apr43
+      - apr44
+      - apr45
+      - apr46
+      - apr47
+      - apr48
+      - apr49
+      - apr50
+      - apr51
+      - apr52
+      - apr53
+      - apr54
+      - apr55
+      - apr57
+      - apr58
+      - apr59
+      - apr60
+      - apr61
+      - apr62
+      - apr63
+      - apr64
+      - apr65
+      - apr66
+      - consulta
+      - id
+    FormFIQL:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fiql01:
+          allOf:
+          - $ref: '#/components/schemas/Fiql01Enum'
+          title: Em geral você diria que sua saúde é
+        fiql02:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho medo de sair
+        fiql03:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito visitar amigos ou parentes
+        fiql04:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito passar a noite longe de casa
+        fiql05:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: É difícil para eu sair e fazer coisas como ir ao cinema ou à igreja
+        fiql06:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito comer antes de sair de casa
+        fiql07:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Quando estou fora de casa tento ficar sempre que possível próximo
+            ao banheiro
+        fiql08:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: É importante eu planejar o que vou fazer de acordo com o meu funcionamento
+            intestinal
+        fiql09:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito viajar
+        fiql10:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico preocupado em não ser capaz de chegar ao banheiro em tempo
+        fiql11:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sinto que não tenho controle do meu intestino
+        fiql12:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Não consigo controlar minha evacuação a tempo de chegar ao banheiro
+        fiql13:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Perco fezes sem perceber
+        fiql14:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tento evitar a perda de fezes, ficando próximo ao banheiro
+        fiql15:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico envergonhado
+        fiql16:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Não posso fazer muitas coisas que eu quero fazer
+        fiql17:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico preocupado em perder fezes
+        fiql18:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sinto-me deprimido
+        fiql19:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico preocupado se outras pessoas sentem cheiro de fezes em mim
+        fiql20:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Acho que não sou uma pessoa saudável
+        fiql21:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho menos prazer em viver
+        fiql22:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho uma relação sexual com menor frequência do que gostaria
+        fiql23:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sinto-me diferente das outras pessoas
+        fiql24:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sempre estou pensando na possibilidade de perder fezes
+        fiql25:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho medo de ter sexo
+        fiql26:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito viajar de carro ou ônibus
+        fiql27:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito sair para comer
+        fiql28:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Quando vou a um lugar novo, procuro saber onde está o banheiro
+        fiql29:
+          allOf:
+          - $ref: '#/components/schemas/Fiql29Enum'
+          title: Durante o mês passado, eu me senti tão triste, desanimado ou tive
+            muitos problemas que me fizeram pensar que nada valia a pena
+        consulta:
+          type: integer
+      required:
+      - consulta
+      - fiql01
+      - fiql02
+      - fiql03
+      - fiql04
+      - fiql05
+      - fiql06
+      - fiql07
+      - fiql08
+      - fiql09
+      - fiql10
+      - fiql11
+      - fiql12
+      - fiql13
+      - fiql14
+      - fiql15
+      - fiql16
+      - fiql17
+      - fiql18
+      - fiql19
+      - fiql20
+      - fiql21
+      - fiql22
+      - fiql23
+      - fiql24
+      - fiql25
+      - fiql26
+      - fiql27
+      - fiql28
+      - fiql29
+      - id
+    FormFSFI:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fsfi01:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi01Enum'
+          title: Com que frequência você sentiu desejo ou interesse sexual?
+        fsfi02:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi02Enum'
+          title: Como você avalia o seu grau de desejo ou interesse sexual?
+        fsfi03:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você se sentiu sexualmente excitada
+            durante a atividade sexual ou o ato sexual?
+        fsfi04:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi04Enum'
+          title: Como você classificaria seu grau de excitação sexual durante a atividade
+            ou ato sexual?
+        fsfi05:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi05Enum'
+          title: Como você avalia o seu grau de segurança (quão confortável é) para
+            ficar sexualmente Excitada durante a atividade sexual ou ato sexual?
+        fsfi06:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você ficou satisfeita com sua
+            excitação sexual durante a atividade ou ato sexual?
+        fsfi07:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você teve lubrificação vaginal
+            (ficou com a “vagina molhada”) durante a atividade sexual ou ato sexual?
+        fsfi08:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi12Enum'
+          title: Como você avalia sua dificuldade em TER lubrificação vaginal (ficou
+            com a “vagina molhada”) durante a atividade sexual ou ato sexual? Levou
+            tempo para ficar lubrificada?
+        fsfi09:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você MANTEVE a lubrificação vaginal
+            (ficou com a “vagina molhada”) até o final da atividade ou ato sexual?
+        fsfi10:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi12Enum'
+          title: Qual foi sua DIFICULDADE em MANTER a lubrificação vaginal(“vagina
+            molhada”) até o final da atividade sexual?
+        fsfi11:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Quando teve estímulo sexual ou ato sexual, com que frequência (quantas
+            vezes) você atingiu o orgasmo (“gozou”)?
+        fsfi12:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi12Enum'
+          title: Quando você teve estímulo sexual ou ato sexual, qual foi a sua dificuldade
+            em você atingir o orgasmo (“gozar”)?O orgasmo para você foi fácil ou difícil,
+            nas últimas 4 semanas?
+        fsfi13:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi13Enum'
+          title: O quanto você ficou satisfeita com sua capacidade de atingir o orgasmo
+            (“gozar”) durante a atividade ou ato sexual?
+        fsfi14:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi14Enum'
+          title: O quanto você esteve satisfeita com a proximidade emocional entre
+            você e o seu parceiro durante a atividade sexual?
+        fsfi15:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi15Enum'
+          title: O quanto você esteve satisfeita com o relacionamento sexual entre
+            você e o seu parceiro?
+        fsfi16:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi16Enum'
+          title: O quanto você esteve satisfeita com sua vida sexual de um modo geral?
+        fsfi17:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi17Enum'
+          title: Com que frequência (quantas vezes) você sentiu desconforto ou dor
+            DURANTE a penetração vaginal?
+        fsfi18:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi18Enum'
+          title: Com que frequência (quantas vezes) você sentiu desconforto ou dor
+            APÓS a penetração vaginal?
+        fsfi19:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi19Enum'
+          title: Como você classificaria seu GRAU de desconforto ou dor durante ou
+            após a penetração vaginal?
+        consulta:
+          type: integer
+      required:
+      - consulta
+      - fsfi01
+      - fsfi02
+      - fsfi03
+      - fsfi04
+      - fsfi05
+      - fsfi06
+      - fsfi07
+      - fsfi08
+      - fsfi09
+      - fsfi10
+      - fsfi11
+      - fsfi12
+      - fsfi13
+      - fsfi14
+      - fsfi15
+      - fsfi16
+      - fsfi17
+      - fsfi18
+      - fsfi19
+      - id
+    FormKHQ:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        khq01:
+          $ref: '#/components/schemas/Khq01Enum'
+        khq02:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq03a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq03b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04c:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04d:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq05a:
+          $ref: '#/components/schemas/Khq05aEnum'
+        khq05b:
+          $ref: '#/components/schemas/Khq05bEnum'
+        khq05c:
+          $ref: '#/components/schemas/Khq05cEnum'
+        khq06a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq06b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq06c:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq07a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq07b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08c:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08d:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08e:
+          $ref: '#/components/schemas/Qvc54Enum'
+        consulta:
+          type: integer
+          nullable: true
+      required:
+      - id
+      - khq01
+      - khq02
+      - khq03a
+      - khq03b
+      - khq04a
+      - khq04b
+      - khq04c
+      - khq04d
+      - khq05a
+      - khq05b
+      - khq05c
+      - khq06a
+      - khq06b
+      - khq06c
+      - khq07a
+      - khq07b
+      - khq08a
+      - khq08b
+      - khq08c
+      - khq08d
+      - khq08e
+    FormQVC:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        qvc01:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Voce tem qualquer dificuldade quando faz grandes esforços (carregar
+            bolsa de compras pesada ou mala?)
+        qvc02:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem dificuldade quando faz grande caminhada?
+        qvc03:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem qualquer dificuldade quando faz uma curta caminhada fora
+            de casa?
+        qvc04:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem que ficar numa cama ou cadeira durante o dia?
+        qvc05:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você precisa de ajuda para se alimentar, se vestir, se lavar ou usar
+            o banheiro?
+        qvc06:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Tem sido difícil trabalhar ou realizar suas atividades diárias?
+        qvc07:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Tem sido difícil praticar seu hobby ou participar de atividades de
+            lazer?
+        qvc08:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você teve falta de ar?
+        qvc09:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido dor?
+        qvc10:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você precisou repousar?
+        qvc11:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido problemas para dormir?
+        qvc12:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem se sentido fraca?
+        qvc13:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem sentido falta de apetite?
+        qvc14:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem se sentido enjoada?
+        qvc15:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem vomitado?
+        qvc16:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido prisão de ventre?
+        qvc17:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem diarréia?
+        qvc18:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você esteve cansada?
+        qvc19:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A dor interferiu em suas atividades diárias?
+        qvc20:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido dificuldade para se concentrar em coisas, como ler
+            jornal ou ver televisão?
+        qvc21:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você se sentiu nervosa?
+        qvc22:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você esteve preocupada?
+        qvc23:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você se sentiu irritada facilmente?
+        qvc24:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você se sentiu deprimida?
+        qvc25:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido dificuldade de se lembrar das coisas?
+        qvc26:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A sua condição física ou o tratamento médico tem interferido em sua
+            atividade familiar?
+        qvc27:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A sua condição física ou o tratamento médico tem interferido em suas
+            atividades sociais?
+        qvc28:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A sua condição física ou o tratamento médico tem lhe trazido dificuldades
+            financeiras?
+        qvc29:
+          allOf:
+          - $ref: '#/components/schemas/Qvc29Enum'
+          title: Como você classifica a sua saúde em geral, durante a última semana?
+        qvc30:
+          allOf:
+          - $ref: '#/components/schemas/Qvc30Enum'
+          title: Como você classifica a sua qualidade de vida em geral durante a última
+            semana?
+        consulta:
+          type: integer
+      required:
+      - consulta
+      - id
+      - qvc01
+      - qvc02
+      - qvc03
+      - qvc04
+      - qvc05
+      - qvc06
+      - qvc07
+      - qvc08
+      - qvc09
+      - qvc10
+      - qvc11
+      - qvc12
+      - qvc13
+      - qvc14
+      - qvc15
+      - qvc16
+      - qvc17
+      - qvc18
+      - qvc19
+      - qvc20
+      - qvc21
+      - qvc22
+      - qvc23
+      - qvc24
+      - qvc25
+      - qvc26
+      - qvc27
+      - qvc28
+      - qvc29
+      - qvc30
+    FormQVCC:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        qvc31:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc32:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc33:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc34:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc35:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc36:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc37:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc38:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc39:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc40:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc41:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc42:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc43:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc44:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc45:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc46:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc47:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc48:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc49:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc50:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc51:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc52:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc53:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc54:
+          $ref: '#/components/schemas/Qvc54Enum'
+        consulta:
+          type: integer
+      required:
+      - consulta
+      - id
+      - qvc31
+      - qvc32
+      - qvc33
+      - qvc34
+      - qvc35
+      - qvc36
+      - qvc37
+      - qvc38
+      - qvc39
+      - qvc40
+      - qvc41
+      - qvc42
+      - qvc43
+      - qvc44
+      - qvc45
+      - qvc46
+      - qvc47
+      - qvc48
+      - qvc49
+      - qvc50
+      - qvc51
+      - qvc52
+      - qvc53
+      - qvc54
+    Fsfi01Enum:
+      enum:
+      - Quase sempre ou sempre
+      - A maioria das vezes (mais da metade do tempo)
+      - Algumas vezes (cerca da metade do tempo)
+      - Poucas vezes (menos da metade do tempo)
+      - Quase nunca ou nunca
+      type: string
+      description: |-
+        * `Quase sempre ou sempre` - Quase sempre ou sempre
+        * `A maioria das vezes (mais da metade do tempo)` - A maioria das vezes (mais da metade do tempo)
+        * `Algumas vezes (cerca da metade do tempo)` - Algumas vezes (cerca da metade do tempo)
+        * `Poucas vezes (menos da metade do tempo)` - Poucas vezes (menos da metade do tempo)
+        * `Quase nunca ou nunca` - Quase nunca ou nunca
+    Fsfi02Enum:
+      enum:
+      - Muito alto
+      - Alto
+      - Moderado
+      - Baixo
+      - Muito baixo ou absolutamente nenhum
+      type: string
+      description: |-
+        * `Muito alto` - Muito alto
+        * `Alto` - Alto
+        * `Moderado` - Moderado
+        * `Baixo` - Baixo
+        * `Muito baixo ou absolutamente nenhum` - Muito baixo ou absolutamente nenhum
+    Fsfi04Enum:
+      enum:
+      - Muito alto
+      - Alto
+      - Moderado
+      - Baixo
+      - Muito baixo ou absolutamente nenhum
+      - Sem atividade sexual
+      type: string
+      description: |-
+        * `Muito alto` - Muito alto
+        * `Alto` - Alto
+        * `Moderado` - Moderado
+        * `Baixo` - Baixo
+        * `Muito baixo ou absolutamente nenhum` - Muito baixo ou absolutamente nenhum
+        * `Sem atividade sexual` - Sem atividade sexual
+    Fsfi05Enum:
+      enum:
+      - Segurança muito alta
+      - Segurança alta
+      - Segurança moderada
+      - Segurança baixa
+      - Segurança muito baixa ou sem segurança
+      - Sem atividade sexual
+      type: string
+      description: |-
+        * `Segurança muito alta` - Segurança muito alta
+        * `Segurança alta` - Segurança alta
+        * `Segurança moderada` - Segurança moderada
+        * `Segurança baixa` - Segurança baixa
+        * `Segurança muito baixa ou sem segurança` - Segurança muito baixa ou sem segurança
+        * `Sem atividade sexual` - Sem atividade sexual
+    Fsfi11Enum:
+      enum:
+      - Quase sempre ou sempre
+      - A maioria das vezes (mais da metade do tempo)
+      - Algumas vezes (cerca da metade do tempo)
+      - Poucas vezes (menos da metade do tempo)
+      - Quase nunca ou nunca
+      - Sem atividade sexual
+      type: string
+      description: |-
+        * `Quase sempre ou sempre` - Quase sempre ou sempre
+        * `A maioria das vezes (mais da metade do tempo)` - A maioria das vezes (mais da metade do tempo)
+        * `Algumas vezes (cerca da metade do tempo)` - Algumas vezes (cerca da metade do tempo)
+        * `Poucas vezes (menos da metade do tempo)` - Poucas vezes (menos da metade do tempo)
+        * `Quase nunca ou nunca` - Quase nunca ou nunca
+        * `Sem atividade sexual` - Sem atividade sexual
+    Fsfi12Enum:
+      enum:
+      - Nada difícil
+      - Ligeiramente difícil
+      - Difícil
+      - Muito difícil
+      - Extremamente difícil ou impossível
+      - Sem atividade sexual
+      type: string
+      description: |-
+        * `Nada difícil` - Nada difícil
+        * `Ligeiramente difícil` - Ligeiramente difícil
+        * `Difícil` - Difícil
+        * `Muito difícil` - Muito difícil
+        * `Extremamente difícil ou impossível` - Extremamente difícil ou impossível
+        * `Sem atividade sexual` - Sem atividade sexual
+    Fsfi13Enum:
+      enum:
+      - Muito satisfeita
+      - Moderadamente satisfeita
+      - Quase igualmente satisfeita e insatisfeita
+      - Moderadamente insatisfeita
+      - Muito insatisfeita
+      - Sem atividade sexual
+      type: string
+      description: |-
+        * `Muito satisfeita` - Muito satisfeita
+        * `Moderadamente satisfeita` - Moderadamente satisfeita
+        * `Quase igualmente satisfeita e insatisfeita` - Quase igualmente satisfeita e insatisfeita
+        * `Moderadamente insatisfeita` - Moderadamente insatisfeita
+        * `Muito insatisfeita` - Muito insatisfeita
+        * `Sem atividade sexual` - Sem atividade sexual
+    Fsfi14Enum:
+      enum:
+      - Muito satisfeita
+      - Moderadamente satisfeita
+      - Quase igualmente satisfeita e insatisfeita
+      - Moderadamente insatisfeita
+      - Muito insatisfeita
+      - Sem atividade sexual
+      type: string
+      description: |-
+        * `Muito satisfeita` - Muito satisfeita
+        * `Moderadamente satisfeita` - Moderadamente satisfeita
+        * `Quase igualmente satisfeita e insatisfeita` - Quase igualmente satisfeita e insatisfeita
+        * `Moderadamente insatisfeita` - Moderadamente insatisfeita
+        * `Muito insatisfeita` - Muito insatisfeita
+        * `Sem atividade sexual` - Sem atividade sexual
+    Fsfi15Enum:
+      enum:
+      - Muito satisfeita
+      - Moderadamente satisfeita
+      - Quase igualmente satisfeita e insatisfeita
+      - Moderadamente insatisfeita
+      - Muito insatisfeita
+      type: string
+      description: |-
+        * `Muito satisfeita` - Muito satisfeita
+        * `Moderadamente satisfeita` - Moderadamente satisfeita
+        * `Quase igualmente satisfeita e insatisfeita` - Quase igualmente satisfeita e insatisfeita
+        * `Moderadamente insatisfeita` - Moderadamente insatisfeita
+        * `Muito insatisfeita` - Muito insatisfeita
+    Fsfi16Enum:
+      enum:
+      - Muito satisfeita
+      - Moderadamente satisfeita
+      - Quase igualmente satisfeita e insatisfeita
+      - Moderadamente insatisfeita
+      - Muito insatisfeita
+      type: string
+      description: |-
+        * `Muito satisfeita` - Muito satisfeita
+        * `Moderadamente satisfeita` - Moderadamente satisfeita
+        * `Quase igualmente satisfeita e insatisfeita` - Quase igualmente satisfeita e insatisfeita
+        * `Moderadamente insatisfeita` - Moderadamente insatisfeita
+        * `Muito insatisfeita` - Muito insatisfeita
+    Fsfi17Enum:
+      enum:
+      - Quase nunca ou nunca
+      - Poucas vezes (menos da metade do tempo)
+      - Algumas vezes (cerca de metade do tempo)
+      - A maioria das vezes (mais da metade do tempo)
+      - Quase sempre ou sempre
+      - Não tentei ter relação
+      type: string
+      description: |-
+        * `Quase nunca ou nunca` - Quase nunca ou nunca
+        * `Poucas vezes (menos da metade do tempo)` - Poucas vezes (menos da metade do tempo)
+        * `Algumas vezes (cerca de metade do tempo)` - Algumas vezes (cerca de metade do tempo)
+        * `A maioria das vezes (mais da metade do tempo)` - A maioria das vezes (mais da metade do tempo)
+        * `Quase sempre ou sempre` - Quase sempre ou sempre
+        * `Não tentei ter relação` - Não tentei ter relação
+    Fsfi18Enum:
+      enum:
+      - Quase nunca ou nunca
+      - Poucas vezes (menos da metade do tempo)
+      - Algumas vezes (cerca de metade do tempo)
+      - A maioria das vezes (mais da metade do tempo)
+      - Quase sempre ou sempre
+      - Não tentei ter relação
+      type: string
+      description: |-
+        * `Quase nunca ou nunca` - Quase nunca ou nunca
+        * `Poucas vezes (menos da metade do tempo)` - Poucas vezes (menos da metade do tempo)
+        * `Algumas vezes (cerca de metade do tempo)` - Algumas vezes (cerca de metade do tempo)
+        * `A maioria das vezes (mais da metade do tempo)` - A maioria das vezes (mais da metade do tempo)
+        * `Quase sempre ou sempre` - Quase sempre ou sempre
+        * `Não tentei ter relação` - Não tentei ter relação
+    Fsfi19Enum:
+      enum:
+      - Muito baixo ou absolutamente nenhum
+      - Baixo
+      - Moderado
+      - Alto
+      - Muito alto
+      - Não tentei ter relação
+      type: string
+      description: |-
+        * `Muito baixo ou absolutamente nenhum` - Muito baixo ou absolutamente nenhum
+        * `Baixo` - Baixo
+        * `Moderado` - Moderado
+        * `Alto` - Alto
+        * `Muito alto` - Muito alto
+        * `Não tentei ter relação` - Não tentei ter relação
+    Instituicao:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 45
+        cnpj:
+          type: string
+          maxLength: 14
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        senha:
+          type: string
+          maxLength: 128
+      required:
+      - cnpj
+      - email
+      - id
+      - nome
+      - senha
+    Khq01Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      type: string
+      description: |-
+        * `1` - muito bom
+        * `2` - bom
+        * `3` - regular
+        * `4` - mau
+        * `5` - muito mau
+    Khq05aEnum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      type: string
+      description: |-
+        * `1` - nao aplicavel
+        * `2` - nada
+        * `3` - um pouco
+        * `4` - moderadamente
+        * `5` - muito
+    Khq05bEnum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      type: string
+      description: |-
+        * `1` - nao aplicavel
+        * `2` - nada
+        * `3` - um pouco
+        * `4` - moderadamente
+        * `5` - muito
+    Khq05cEnum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      type: string
+      description: |-
+        * `1` - nao aplicavel
+        * `2` - nada
+        * `3` - um pouco
+        * `4` - moderadamente
+        * `5` - muito
+    NullEnum:
+      enum:
+      - null
+    Paciente:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        matricula:
+          type: string
+          maxLength: 45
+        nome:
+          type: string
+          maxLength: 100
+        altura:
+          type: number
+          format: double
+        peso:
+          type: number
+          format: double
+        imc:
+          type: number
+          format: double
+          readOnly: true
+        cpf:
+          type: string
+          maxLength: 15
+        telefone:
+          type: string
+          maxLength: 15
+        data_nascimento:
+          type: string
+          format: date
+      required:
+      - altura
+      - cpf
+      - data_nascimento
+      - id
+      - imc
+      - matricula
+      - nome
+      - peso
+      - telefone
+    PaginatedAdministradorList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Administrador'
+    PaginatedConsultaList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Consulta'
+    PaginatedFisioterapeutaList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fisioterapeuta'
+    PaginatedFormAFMList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormAFM'
+    PaginatedFormAGPGList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormAGPG'
+    PaginatedFormAICSList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormAICS'
+    PaginatedFormAPRList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormAPR'
+    PaginatedFormFIQLList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormFIQL'
+    PaginatedFormFSFIList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormFSFI'
+    PaginatedFormKHQList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormKHQ'
+    PaginatedFormQVCCList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormQVCC'
+    PaginatedFormQVCList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormQVC'
+    PaginatedInstituicaoList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instituicao'
+    PaginatedPacienteList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Paciente'
+    PatchedAdministrador:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        login:
+          type: string
+          maxLength: 45
+        senha:
+          type: string
+          maxLength: 128
+        instituicao:
+          type: integer
+    PatchedConsulta:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        data_consulta:
+          type: string
+          format: date
+          readOnly: true
+        data_retorno:
+          type: string
+          format: date
+          nullable: true
+        paciente:
+          type: integer
+        fisioterapeuta:
+          type: integer
+    PatchedFisioterapeuta:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        matricula:
+          type: string
+          maxLength: 20
+        nome:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        senha:
+          type: string
+          maxLength: 128
+        instituicao:
+          type: integer
+          nullable: true
+    PatchedFormAFM:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        afm06:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        afm33:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        consulta:
+          allOf:
+          - $ref: '#/components/schemas/Consulta'
+          readOnly: true
+        afm01:
+          allOf:
+          - $ref: '#/components/schemas/Afm01Enum'
+          title: Bebe 2 litros de água?
+        afm02:
+          allOf:
+          - $ref: '#/components/schemas/Afm02Enum'
+          title: Sente vontade de urinar?
+        afm03:
+          allOf:
+          - $ref: '#/components/schemas/Afm03Enum'
+          title: Tem sensação de esvaziamento incompleto?
+        afm04:
+          allOf:
+          - $ref: '#/components/schemas/Afm04Enum'
+          title: Há gotejamento após esvaziament
+        afm05:
+          allOf:
+          - $ref: '#/components/schemas/Afm05Enum'
+          title: Você perde xixi?
+        afm07:
+          type: string
+          format: date
+          nullable: true
+          title: 'Data do último episódio:'
+        afm08:
+          type: integer
+          nullable: true
+          title: 'Perda diária:'
+        afm09:
+          nullable: true
+          title: 'Intensidade de perda:'
+          oneOf:
+          - $ref: '#/components/schemas/Afm09Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm10:
+          nullable: true
+          title: 'Quantidade da perda:'
+          oneOf:
+          - $ref: '#/components/schemas/Afm10Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm11:
+          nullable: true
+          title: 'Tipo da incontinência urinária:'
+          oneOf:
+          - $ref: '#/components/schemas/Afm11Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm12:
+          type: string
+          format: date
+          nullable: true
+          title: 'Início dos sintomas:'
+        afm13:
+          type: integer
+          title: 'Frequência urinária diária:'
+        afm14:
+          allOf:
+          - $ref: '#/components/schemas/Afm14Enum'
+          title: Dor para urinar?
+        afm15:
+          allOf:
+          - $ref: '#/components/schemas/Afm15Enum'
+          title: Infecção urinária?
+        afm16:
+          type: integer
+          nullable: true
+          title: Quantas vezes?
+        afm17:
+          type: string
+          format: date
+          nullable: true
+          title: Qual a data do último episódio?
+        afm18:
+          allOf:
+          - $ref: '#/components/schemas/Afm18Enum'
+          title: ' Uso de forro?'
+        afm19:
+          type: integer
+          nullable: true
+          title: Quantidade por dia?
+        afm20:
+          allOf:
+          - $ref: '#/components/schemas/Afm20Enum'
+          title: ' Enurese?'
+        afm21:
+          type: integer
+          nullable: true
+          title: Quantidade de vezes?
+        afm22:
+          allOf:
+          - $ref: '#/components/schemas/Afm22Enum'
+          title: Nocturia?
+        afm23:
+          type: integer
+          nullable: true
+          title: Quantidade de vezes?
+        afm24:
+          allOf:
+          - $ref: '#/components/schemas/Afm24Enum'
+          title: Sente protuberância ou algo caindo que pode ver ou sentir na área
+            vaginal?
+        afm25:
+          allOf:
+          - $ref: '#/components/schemas/Afm25Enum'
+          title: Toque vaginal
+        afm26:
+          allOf:
+          - $ref: '#/components/schemas/Afm26Enum'
+          title: Desconforto ao toque vaginal?
+        afm27:
+          allOf:
+          - $ref: '#/components/schemas/Afm27Enum'
+          title: Dor
+        afm28:
+          allOf:
+          - $ref: '#/components/schemas/Afm28Enum'
+          title: Sangramento Vaginal
+        afm29:
+          type: number
+          format: double
+          title: Comprimento
+        afm30:
+          type: integer
+          title: Segundos de contração do MAP sustentada
+        afm31:
+          type: integer
+          title: Contrações rápidas sem perder a força
+        afm32:
+          allOf:
+          - $ref: '#/components/schemas/Afm32Enum'
+          title: Usa musculatura acessória para contração?
+        afm34:
+          allOf:
+          - $ref: '#/components/schemas/Afm34Enum'
+          title: Atividade tônica dos músculos do assoalho pélvico
+        afm35:
+          allOf:
+          - $ref: '#/components/schemas/Afm35Enum'
+          title: Contração do levantador do ânus/ contração em direção à sínfise púbica
+        afm36:
+          allOf:
+          - $ref: '#/components/schemas/Afm36Enum'
+          title: Exercícios com dilatadores
+        afm37:
+          type: integer
+          nullable: true
+          title: Frequência dilatadores
+        afm38:
+          allOf:
+          - $ref: '#/components/schemas/Afm38Enum'
+          title: Relação sexual
+        afm39:
+          type: integer
+          nullable: true
+          title: Frequência relação sexual
+        afm40:
+          nullable: true
+          title: Desconforto na relação sexual?
+          oneOf:
+          - $ref: '#/components/schemas/Afm40Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        afm41:
+          allOf:
+          - $ref: '#/components/schemas/Afm41Enum'
+          title: Força da musculatura do assoalho pélvico
+        afm42:
+          allOf:
+          - $ref: '#/components/schemas/Afm42Enum'
+          title: Escala New Perfect
+    PatchedFormAGPG:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        agpg01:
+          type: number
+          format: double
+          title: Peso
+        agpg02:
+          type: number
+          format: double
+          title: Altura
+        agpg03:
+          allOf:
+          - $ref: '#/components/schemas/Agpg03Enum'
+          title: IMC
+        agpg04:
+          type: number
+          format: double
+          title: Circunferência abdominal
+        agpg05:
+          type: number
+          format: double
+          title: MID 21
+        agpg06:
+          type: number
+          format: double
+          title: MID 14
+        agpg07:
+          type: number
+          format: double
+          title: MID 07
+        agpg08:
+          type: number
+          format: double
+          title: MID BSP
+        agpg09:
+          type: number
+          format: double
+          title: MID 28
+        agpg10:
+          type: number
+          format: double
+          title: MID 35
+        agpg11:
+          type: number
+          format: double
+          title: MID TT
+        agpg12:
+          type: number
+          format: double
+          title: MID Pé
+        agpg13:
+          type: number
+          format: double
+          title: MIE 21
+        agpg14:
+          type: number
+          format: double
+          title: MIE 14
+        agpg15:
+          type: number
+          format: double
+          title: MIE 07
+        agpg16:
+          type: number
+          format: double
+          title: MIE BSP
+        agpg17:
+          type: number
+          format: double
+          title: MIE 28
+        agpg18:
+          type: number
+          format: double
+          title: MIE 35
+        agpg19:
+          type: number
+          format: double
+          title: MIE TT
+        agpg20:
+          type: number
+          format: double
+          title: MIE Pé
+        agpg21:
+          type: number
+          format: double
+          title: '# 21'
+        agpg22:
+          type: number
+          format: double
+          title: '# 14'
+        agpg23:
+          type: number
+          format: double
+          title: '# 07'
+        agpg24:
+          type: number
+          format: double
+          title: '# BSP'
+        agpg25:
+          type: number
+          format: double
+          title: '# 28'
+        agpg26:
+          type: number
+          format: double
+          title: '# 35'
+        agpg27:
+          type: number
+          format: double
+          title: '# TT'
+        agpg28:
+          type: number
+          format: double
+          title: '# Pé'
+        agpg29:
+          allOf:
+          - $ref: '#/components/schemas/Agpg29Enum'
+          title: Resultado
+        agpg30:
+          allOf:
+          - $ref: '#/components/schemas/Agpg30Enum'
+          title: Sensação de peso
+        agpg31:
+          allOf:
+          - $ref: '#/components/schemas/Agpg31Enum'
+          title: 'Pele esticada '
+        agpg32:
+          allOf:
+          - $ref: '#/components/schemas/Agpg32Enum'
+          title: Formigamento
+        agpg33:
+          allOf:
+          - $ref: '#/components/schemas/Agpg33Enum'
+          title: Sensação de perna dura/movimentos reduzidos
+        agpg34:
+          allOf:
+          - $ref: '#/components/schemas/Agpg34Enum'
+          title: Alguma dificuldade para realizar atividade física
+        agpg35:
+          allOf:
+          - $ref: '#/components/schemas/Agpg35Enum'
+          title: Mudança de coloração
+        agpg36:
+          allOf:
+          - $ref: '#/components/schemas/Agpg36Enum'
+          title: Telangiectasias
+        agpg37:
+          allOf:
+          - $ref: '#/components/schemas/Agpg37Enum'
+          title: Veias varicosas
+        agpg38:
+          allOf:
+          - $ref: '#/components/schemas/Agpg38Enum'
+          title: Úlcera venosa
+        agpg39:
+          nullable: true
+          title: Tipo úlcera venosa
+          oneOf:
+          - $ref: '#/components/schemas/Agpg39Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        agpg40:
+          allOf:
+          - $ref: '#/components/schemas/Agpg40Enum'
+          title: Lesão nervosa periférica
+        agpg41:
+          allOf:
+          - $ref: '#/components/schemas/Agpg41Enum'
+          title: Flexão do quadril direito
+        agpg42:
+          allOf:
+          - $ref: '#/components/schemas/Agpg42Enum'
+          title: Flexão do quadril esquerdo
+        agpg43:
+          allOf:
+          - $ref: '#/components/schemas/Agpg43Enum'
+          title: Extensão do joelho direito
+        agpg44:
+          allOf:
+          - $ref: '#/components/schemas/Agpg44Enum'
+          title: Extensão do joelho esquerdo
+        agpg45:
+          allOf:
+          - $ref: '#/components/schemas/Agpg45Enum'
+          title: Dorsiflexão do tornozelo direito
+        agpg46:
+          allOf:
+          - $ref: '#/components/schemas/Agpg46Enum'
+          title: Dorsiflexão do tornozelo esquerdo
+        agpg47:
+          allOf:
+          - $ref: '#/components/schemas/Agpg47Enum'
+          title: Alterações da função intestinal
+        agpg48:
+          allOf:
+          - $ref: '#/components/schemas/Agpg48Enum'
+          title: Escala de Bristol
+        agpg49:
+          allOf:
+          - $ref: '#/components/schemas/Agpg49Enum'
+          title: Incontinência
+        agpg50:
+          allOf:
+          - $ref: '#/components/schemas/Agpg50Enum'
+          title: Alterações da função vesical
+        consulta:
+          type: integer
+    PatchedFormAICS:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        aics11:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        aics23:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        aics35:
+          type: array
+          items:
+            $ref: '#/components/schemas/RespostaTexto'
+          readOnly: true
+        consulta:
+          allOf:
+          - $ref: '#/components/schemas/Consulta'
+          readOnly: true
+        aics01:
+          type: string
+          format: date
+          title: Data de nascimento
+        aics03:
+          type: number
+          format: double
+          title: Peso
+        aics04:
+          type: number
+          format: double
+          title: Altura
+        aics05:
+          allOf:
+          - $ref: '#/components/schemas/Aics05Enum'
+          title: IMC
+        aics06:
+          type: number
+          format: double
+          title: Circunferência abdominal
+        aics07:
+          type: integer
+          title: Paridade (gestações)
+        aics08:
+          type: integer
+          title: Paridade (partos)
+        aics09:
+          type: integer
+          title: Paridade (abortos)
+        aics10:
+          allOf:
+          - $ref: '#/components/schemas/Aics10Enum'
+          title: Menopausa por tratamento oncológico
+        aics12:
+          allOf:
+          - $ref: '#/components/schemas/Aics12Enum'
+          title: Tabagista
+        aics13:
+          type: string
+          format: date
+          nullable: true
+          title: Ex-tabagista (há quanto tempo)
+        aics14:
+          allOf:
+          - $ref: '#/components/schemas/Aics14Enum'
+          title: Cor da pele
+        aics15:
+          allOf:
+          - $ref: '#/components/schemas/Aics15Enum'
+          title: Estado civil
+        aics16:
+          allOf:
+          - $ref: '#/components/schemas/Aics16Enum'
+          title: Profissão
+        aics17:
+          allOf:
+          - $ref: '#/components/schemas/Aics17Enum'
+          title: Escolaridade
+        aics18:
+          allOf:
+          - $ref: '#/components/schemas/Aics18Enum'
+          title: Renda familiar
+        aics19:
+          allOf:
+          - $ref: '#/components/schemas/Aics19Enum'
+          title: Vínculo previdenciário
+        aics20:
+          allOf:
+          - $ref: '#/components/schemas/Aics20Enum'
+          title: Estadiamento Clínico FIGO
+        aics21:
+          allOf:
+          - $ref: '#/components/schemas/Aics21Enum'
+          title: Estadiamento histopatológico
+        aics22:
+          allOf:
+          - $ref: '#/components/schemas/Aics22Enum'
+          title: Tipo/grau histológico
+        aics24:
+          type: string
+          nullable: true
+          title: Procedimento cirúrgico
+          maxLength: 20
+        aics25:
+          type: string
+          format: date
+          nullable: true
+          title: 'Data de realização da primeira cirurgia:'
+        aics26:
+          nullable: true
+          title: Técnica cirúrgica
+          oneOf:
+          - $ref: '#/components/schemas/Aics26Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        aics27:
+          nullable: true
+          title: Complicação pós-cirúrgica até 30 dias após a cirurgia
+          oneOf:
+          - $ref: '#/components/schemas/Aics27Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        aics28:
+          type: integer
+          nullable: true
+          title: Número de sessões de radioterapia
+        aics29:
+          type: number
+          format: double
+          nullable: true
+          title: Dose na radioterapia (Gy)
+        aics30:
+          type: string
+          format: date
+          nullable: true
+          title: Tempo de tratamento com radioterapia
+        aics31:
+          type: integer
+          nullable: true
+          title: 'Número de sessões de braquiterapia:'
+        aics32:
+          type: number
+          format: double
+          nullable: true
+          title: Dose na braquiterapia (Gy)
+        aics33:
+          type: string
+          format: date
+          nullable: true
+          title: Tempo de tratamento com braquiterapia
+        aics34:
+          nullable: true
+          title: Tipo da quimioterapia
+          oneOf:
+          - $ref: '#/components/schemas/Aics34Enum'
+          - $ref: '#/components/schemas/NullEnum'
+    PatchedFormAPR:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        apr01:
+          type: number
+          format: double
+          title: Peso
+        apr02:
+          type: number
+          format: double
+          title: Altura
+        apr03:
+          type: number
+          format: double
+          readOnly: true
+          title: IMC
+        apr04:
+          type: number
+          format: double
+          title: Circunferência abdominal
+        apr05:
+          type: string
+          format: date
+          title: Data da radioterapia
+        apr06:
+          type: string
+          format: date
+          title: Data final da radioterapia
+        apr07:
+          type: number
+          format: double
+          title: Radiação total
+        apr08:
+          type: integer
+          title: Número total de frações
+        apr09:
+          allOf:
+          - $ref: '#/components/schemas/Apr09Enum'
+          title: Quimioterapia
+        apr10:
+          type: string
+          format: date
+          nullable: true
+          title: Data da quimioterapia
+        apr11:
+          type: string
+          format: date
+          nullable: true
+          title: Data final da quimioterapia
+        apr12:
+          type: number
+          format: double
+          nullable: true
+          title: Ciclo total
+        apr13:
+          type: number
+          format: double
+          nullable: true
+          title: Dose Total
+        apr14:
+          allOf:
+          - $ref: '#/components/schemas/Apr14Enum'
+          title: Braquiterapia
+        apr15:
+          type: string
+          format: date
+          nullable: true
+          title: Data da braquiterapia
+        apr16:
+          type: string
+          format: date
+          nullable: true
+          title: Data final da braquiterapia
+        apr17:
+          type: number
+          format: double
+          nullable: true
+          title: Radiação total
+        apr18:
+          type: integer
+          nullable: true
+          title: Número total de frações
+        apr19:
+          allOf:
+          - $ref: '#/components/schemas/Apr19Enum'
+          title: Dor
+        apr20:
+          type: string
+          nullable: true
+          title: Local
+          maxLength: 45
+        apr21:
+          allOf:
+          - $ref: '#/components/schemas/Apr21Enum'
+          title: Escala Visual Analógica(EVA)
+        apr22:
+          type: number
+          format: double
+          title: MID 21
+        apr23:
+          type: number
+          format: double
+          title: MID 14
+        apr24:
+          type: number
+          format: double
+          title: MID 07
+        apr25:
+          type: number
+          format: double
+          title: MID BSP
+        apr26:
+          type: number
+          format: double
+          title: MID 28
+        apr27:
+          type: number
+          format: double
+          title: MID 35
+        apr28:
+          type: number
+          format: double
+          title: MID TT
+        apr29:
+          type: number
+          format: double
+          title: MID Pé
+        apr30:
+          type: number
+          format: double
+          title: MIE 21
+        apr31:
+          type: number
+          format: double
+          title: MIE 14
+        apr32:
+          type: number
+          format: double
+          title: MIE 07
+        apr33:
+          type: number
+          format: double
+          title: MIE BSP
+        apr34:
+          type: number
+          format: double
+          title: MIE 28
+        apr35:
+          type: number
+          format: double
+          title: MIE 35
+        apr36:
+          type: number
+          format: double
+          title: MIE TT
+        apr37:
+          type: number
+          format: double
+          title: MIE Pé
+        apr38:
+          type: number
+          format: double
+          title: '# 21'
+        apr39:
+          type: number
+          format: double
+          title: '# 14'
+        apr40:
+          type: number
+          format: double
+          title: '# 07'
+        apr41:
+          type: number
+          format: double
+          title: '# BSP'
+        apr42:
+          type: number
+          format: double
+          title: '# 28'
+        apr43:
+          type: number
+          format: double
+          title: '# 35'
+        apr44:
+          type: number
+          format: double
+          title: '# TT'
+        apr45:
+          type: number
+          format: double
+          title: '# Pé'
+        apr46:
+          allOf:
+          - $ref: '#/components/schemas/Apr46Enum'
+          title: Resultado
+        apr47:
+          allOf:
+          - $ref: '#/components/schemas/Apr47Enum'
+          title: Sensação de peso
+        apr48:
+          allOf:
+          - $ref: '#/components/schemas/Apr48Enum'
+          title: Pele esticada
+        apr49:
+          allOf:
+          - $ref: '#/components/schemas/Apr49Enum'
+          title: Formigamento
+        apr50:
+          allOf:
+          - $ref: '#/components/schemas/Apr50Enum'
+          title: Sensação de perna dura/movimentos reduzidos
+        apr51:
+          allOf:
+          - $ref: '#/components/schemas/Apr51Enum'
+          title: Alguma dificuldade para realizar atividade física
+        apr52:
+          allOf:
+          - $ref: '#/components/schemas/Apr52Enum'
+          title: Mudança de coloração
+        apr53:
+          allOf:
+          - $ref: '#/components/schemas/Apr53Enum'
+          title: Telangiectasias
+        apr54:
+          allOf:
+          - $ref: '#/components/schemas/Apr54Enum'
+          title: Veias varicosas
+        apr55:
+          allOf:
+          - $ref: '#/components/schemas/Apr55Enum'
+          title: Ulcera venosa
+        apr56:
+          nullable: true
+          title: Ulcera venosa
+          oneOf:
+          - $ref: '#/components/schemas/Apr56Enum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        apr57:
+          allOf:
+          - $ref: '#/components/schemas/Apr57Enum'
+          title: Flexão do quadril D
+        apr58:
+          allOf:
+          - $ref: '#/components/schemas/Apr58Enum'
+          title: Flexão do quadril E
+        apr59:
+          allOf:
+          - $ref: '#/components/schemas/Apr59Enum'
+          title: Extensão do joelho D
+        apr60:
+          allOf:
+          - $ref: '#/components/schemas/Apr60Enum'
+          title: Extensão do joelho E
+        apr61:
+          allOf:
+          - $ref: '#/components/schemas/Apr61Enum'
+          title: Dorsiflexão do tornozelo D
+        apr62:
+          allOf:
+          - $ref: '#/components/schemas/Apr62Enum'
+          title: Dorsiflexão do tornozelo E
+        apr63:
+          allOf:
+          - $ref: '#/components/schemas/Apr63Enum'
+          title: Alterações da função INTESTINAL
+        apr64:
+          allOf:
+          - $ref: '#/components/schemas/Apr64Enum'
+          title: Escala de Bristol
+        apr65:
+          allOf:
+          - $ref: '#/components/schemas/Apr65Enum'
+          title: Incontinência
+        apr66:
+          allOf:
+          - $ref: '#/components/schemas/Apr66Enum'
+          title: Alterações da função VESICAL
+        consulta:
+          type: integer
+    PatchedFormFIQL:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fiql01:
+          allOf:
+          - $ref: '#/components/schemas/Fiql01Enum'
+          title: Em geral você diria que sua saúde é
+        fiql02:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho medo de sair
+        fiql03:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito visitar amigos ou parentes
+        fiql04:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito passar a noite longe de casa
+        fiql05:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: É difícil para eu sair e fazer coisas como ir ao cinema ou à igreja
+        fiql06:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito comer antes de sair de casa
+        fiql07:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Quando estou fora de casa tento ficar sempre que possível próximo
+            ao banheiro
+        fiql08:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: É importante eu planejar o que vou fazer de acordo com o meu funcionamento
+            intestinal
+        fiql09:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito viajar
+        fiql10:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico preocupado em não ser capaz de chegar ao banheiro em tempo
+        fiql11:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sinto que não tenho controle do meu intestino
+        fiql12:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Não consigo controlar minha evacuação a tempo de chegar ao banheiro
+        fiql13:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Perco fezes sem perceber
+        fiql14:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tento evitar a perda de fezes, ficando próximo ao banheiro
+        fiql15:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico envergonhado
+        fiql16:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Não posso fazer muitas coisas que eu quero fazer
+        fiql17:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico preocupado em perder fezes
+        fiql18:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sinto-me deprimido
+        fiql19:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Fico preocupado se outras pessoas sentem cheiro de fezes em mim
+        fiql20:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Acho que não sou uma pessoa saudável
+        fiql21:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho menos prazer em viver
+        fiql22:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho uma relação sexual com menor frequência do que gostaria
+        fiql23:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sinto-me diferente das outras pessoas
+        fiql24:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Sempre estou pensando na possibilidade de perder fezes
+        fiql25:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Tenho medo de ter sexo
+        fiql26:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito viajar de carro ou ônibus
+        fiql27:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Evito sair para comer
+        fiql28:
+          allOf:
+          - $ref: '#/components/schemas/Fiql28Enum'
+          title: Quando vou a um lugar novo, procuro saber onde está o banheiro
+        fiql29:
+          allOf:
+          - $ref: '#/components/schemas/Fiql29Enum'
+          title: Durante o mês passado, eu me senti tão triste, desanimado ou tive
+            muitos problemas que me fizeram pensar que nada valia a pena
+        consulta:
+          type: integer
+    PatchedFormFSFI:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fsfi01:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi01Enum'
+          title: Com que frequência você sentiu desejo ou interesse sexual?
+        fsfi02:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi02Enum'
+          title: Como você avalia o seu grau de desejo ou interesse sexual?
+        fsfi03:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você se sentiu sexualmente excitada
+            durante a atividade sexual ou o ato sexual?
+        fsfi04:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi04Enum'
+          title: Como você classificaria seu grau de excitação sexual durante a atividade
+            ou ato sexual?
+        fsfi05:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi05Enum'
+          title: Como você avalia o seu grau de segurança (quão confortável é) para
+            ficar sexualmente Excitada durante a atividade sexual ou ato sexual?
+        fsfi06:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você ficou satisfeita com sua
+            excitação sexual durante a atividade ou ato sexual?
+        fsfi07:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você teve lubrificação vaginal
+            (ficou com a “vagina molhada”) durante a atividade sexual ou ato sexual?
+        fsfi08:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi12Enum'
+          title: Como você avalia sua dificuldade em TER lubrificação vaginal (ficou
+            com a “vagina molhada”) durante a atividade sexual ou ato sexual? Levou
+            tempo para ficar lubrificada?
+        fsfi09:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Com que frequência (quantas vezes) você MANTEVE a lubrificação vaginal
+            (ficou com a “vagina molhada”) até o final da atividade ou ato sexual?
+        fsfi10:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi12Enum'
+          title: Qual foi sua DIFICULDADE em MANTER a lubrificação vaginal(“vagina
+            molhada”) até o final da atividade sexual?
+        fsfi11:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi11Enum'
+          title: Quando teve estímulo sexual ou ato sexual, com que frequência (quantas
+            vezes) você atingiu o orgasmo (“gozou”)?
+        fsfi12:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi12Enum'
+          title: Quando você teve estímulo sexual ou ato sexual, qual foi a sua dificuldade
+            em você atingir o orgasmo (“gozar”)?O orgasmo para você foi fácil ou difícil,
+            nas últimas 4 semanas?
+        fsfi13:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi13Enum'
+          title: O quanto você ficou satisfeita com sua capacidade de atingir o orgasmo
+            (“gozar”) durante a atividade ou ato sexual?
+        fsfi14:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi14Enum'
+          title: O quanto você esteve satisfeita com a proximidade emocional entre
+            você e o seu parceiro durante a atividade sexual?
+        fsfi15:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi15Enum'
+          title: O quanto você esteve satisfeita com o relacionamento sexual entre
+            você e o seu parceiro?
+        fsfi16:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi16Enum'
+          title: O quanto você esteve satisfeita com sua vida sexual de um modo geral?
+        fsfi17:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi17Enum'
+          title: Com que frequência (quantas vezes) você sentiu desconforto ou dor
+            DURANTE a penetração vaginal?
+        fsfi18:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi18Enum'
+          title: Com que frequência (quantas vezes) você sentiu desconforto ou dor
+            APÓS a penetração vaginal?
+        fsfi19:
+          allOf:
+          - $ref: '#/components/schemas/Fsfi19Enum'
+          title: Como você classificaria seu GRAU de desconforto ou dor durante ou
+            após a penetração vaginal?
+        consulta:
+          type: integer
+    PatchedFormKHQ:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        khq01:
+          $ref: '#/components/schemas/Khq01Enum'
+        khq02:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq03a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq03b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04c:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq04d:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq05a:
+          $ref: '#/components/schemas/Khq05aEnum'
+        khq05b:
+          $ref: '#/components/schemas/Khq05bEnum'
+        khq05c:
+          $ref: '#/components/schemas/Khq05cEnum'
+        khq06a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq06b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq06c:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq07a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq07b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08a:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08b:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08c:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08d:
+          $ref: '#/components/schemas/Qvc54Enum'
+        khq08e:
+          $ref: '#/components/schemas/Qvc54Enum'
+        consulta:
+          type: integer
+          nullable: true
+    PatchedFormQVC:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        qvc01:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Voce tem qualquer dificuldade quando faz grandes esforços (carregar
+            bolsa de compras pesada ou mala?)
+        qvc02:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem dificuldade quando faz grande caminhada?
+        qvc03:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem qualquer dificuldade quando faz uma curta caminhada fora
+            de casa?
+        qvc04:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem que ficar numa cama ou cadeira durante o dia?
+        qvc05:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você precisa de ajuda para se alimentar, se vestir, se lavar ou usar
+            o banheiro?
+        qvc06:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Tem sido difícil trabalhar ou realizar suas atividades diárias?
+        qvc07:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Tem sido difícil praticar seu hobby ou participar de atividades de
+            lazer?
+        qvc08:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você teve falta de ar?
+        qvc09:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido dor?
+        qvc10:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você precisou repousar?
+        qvc11:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido problemas para dormir?
+        qvc12:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem se sentido fraca?
+        qvc13:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem sentido falta de apetite?
+        qvc14:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem se sentido enjoada?
+        qvc15:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem vomitado?
+        qvc16:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido prisão de ventre?
+        qvc17:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem diarréia?
+        qvc18:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você esteve cansada?
+        qvc19:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A dor interferiu em suas atividades diárias?
+        qvc20:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido dificuldade para se concentrar em coisas, como ler
+            jornal ou ver televisão?
+        qvc21:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você se sentiu nervosa?
+        qvc22:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você esteve preocupada?
+        qvc23:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você se sentiu irritada facilmente?
+        qvc24:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você se sentiu deprimida?
+        qvc25:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: Você tem tido dificuldade de se lembrar das coisas?
+        qvc26:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A sua condição física ou o tratamento médico tem interferido em sua
+            atividade familiar?
+        qvc27:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A sua condição física ou o tratamento médico tem interferido em suas
+            atividades sociais?
+        qvc28:
+          allOf:
+          - $ref: '#/components/schemas/Qvc54Enum'
+          title: A sua condição física ou o tratamento médico tem lhe trazido dificuldades
+            financeiras?
+        qvc29:
+          allOf:
+          - $ref: '#/components/schemas/Qvc29Enum'
+          title: Como você classifica a sua saúde em geral, durante a última semana?
+        qvc30:
+          allOf:
+          - $ref: '#/components/schemas/Qvc30Enum'
+          title: Como você classifica a sua qualidade de vida em geral durante a última
+            semana?
+        consulta:
+          type: integer
+    PatchedFormQVCC:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        qvc31:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc32:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc33:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc34:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc35:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc36:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc37:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc38:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc39:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc40:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc41:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc42:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc43:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc44:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc45:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc46:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc47:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc48:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc49:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc50:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc51:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc52:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc53:
+          $ref: '#/components/schemas/Qvc54Enum'
+        qvc54:
+          $ref: '#/components/schemas/Qvc54Enum'
+        consulta:
+          type: integer
+    PatchedInstituicao:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 45
+        cnpj:
+          type: string
+          maxLength: 14
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        senha:
+          type: string
+          maxLength: 128
+    PatchedPaciente:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        matricula:
+          type: string
+          maxLength: 45
+        nome:
+          type: string
+          maxLength: 100
+        altura:
+          type: number
+          format: double
+        peso:
+          type: number
+          format: double
+        imc:
+          type: number
+          format: double
+          readOnly: true
+        cpf:
+          type: string
+          maxLength: 15
+        telefone:
+          type: string
+          maxLength: 15
+        data_nascimento:
+          type: string
+          format: date
+    Qvc29Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      type: string
+      description: |-
+        * `1` - pessima
+        * `2` - muito ruim
+        * `3` - ruim
+        * `4` - moderado
+        * `5` - bom
+        * `6` - muito bom
+        * `7` - otima
+    Qvc30Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      type: string
+      description: |-
+        * `1` - pessima
+        * `2` - muito ruim
+        * `3` - ruim
+        * `4` - moderado
+        * `5` - bom
+        * `6` - muito bom
+        * `7` - otima
+    Qvc54Enum:
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      type: string
+      description: |-
+        * `1` - nada
+        * `2` - um pouco
+        * `3` - moderadamente
+        * `4` - muito
+    RespostaTexto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        texto:
+          type: string
+          maxLength: 30
+      required:
+      - id
+      - texto
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - password
+      - refresh
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
