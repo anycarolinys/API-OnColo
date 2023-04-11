@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'formularios.formFSFI',
     'formularios.formFIQL',
     'formularios.formAPR',
+    'formularios.formAFM',
+    'formularios.formAGPG',
+    'formularios.formAICS',
+    'respostatexto',
 ]
 
 MIDDLEWARE = [
