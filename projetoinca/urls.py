@@ -15,7 +15,7 @@ urlpatterns = [
     path('formulario/FIQL/', include('formularios.formFIQL.urls')),
     path('formulario/APR/', include('formularios.formAPR.urls')),
 
-    path('formulario/KHQ', include('formularios.formKHQ.urls')),
+    path('formulario/KHQ/', include('formularios.formKHQ.urls')),
     path('formulario/QVC/', include('formularios.formQVC.urls')),
     path('formulario/QVCC/', include('formularios.formQVCC.urls')),
 
